@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc5c18f97f3f01e4284fec1bc751d261, type: 3}
-  m_Name: MainPlayerData
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerRunData
-  maxSpeed: 5
+  m_Script: {fileID: 11500000, guid: 84209e8dcf418a34bb80017b295db090, type: 3}
+  m_Name: TestEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyRunData
+  maxSpeed: 1
   acceleration: 1
-  accelAmount: 10
+  accelAmount: 50
   decceleration: 1
-  deccelAmount: 10
+  deccelAmount: 50
   doConserveMomentum: 0

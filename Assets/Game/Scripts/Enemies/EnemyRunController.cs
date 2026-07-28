@@ -1,34 +1,39 @@
-using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerRunController : MonoBehaviour
+public class EnemyRunController : MonoBehaviour
 {
-    public PlayerRunData Data;
+    [SerializeField] EnemyRunData Data;
     private Rigidbody2D rb;
-
-    public bool IsFacingRight;
-    private Vector2 moveValue;
-    private InputAction moveAction;
-
+    [HideInInspector] public bool IsFacingRight;
+    private GameObject player;
+    private Vector2 direction;
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveAction = InputSystem.actions.FindAction("Move");
     }
 
-    private void Start()
+    void Start()
     {
+        player = GameObject.Find("Player");
         IsFacingRight = true;
     }
 
-    private void Update()
+    void Update()
     {
-        moveValue = moveAction.ReadValue<Vector2>();   
-
-        if(moveValue.x != 0)
+        if (player == null)
         {
-            CheckDirectionToFace(moveValue.x > 0);
+            Debug.Log("Player Not found");
+            return;
+        } 
+
+        direction = (player.transform.position - transform.position).normalized;
+
+        //Debug.Log(direction.ToString());
+
+        if (direction.x != 0)
+        {
+            CheckDirectionToFace(direction.x > 0);
         }
     }
 
@@ -39,15 +44,15 @@ public class PlayerRunController : MonoBehaviour
 
     private void Run()
     {
-        float targetSpeedX = moveValue.x * Data.maxSpeed;
-        float targetSpeedY = moveValue.y * Data.maxSpeed;
+        float targetSpeedX = direction.x * Data.maxSpeed;
+        float targetSpeedY = direction.y * Data.maxSpeed;
 
         float accelRateX;
         float accelRateY;
 
         accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? Data.accelAmount : Data.accelAmount;
         accelRateY = (Mathf.Abs(targetSpeedY) > 0.01f) ? Data.accelAmount : Data.accelAmount;
-
+    
         if (Data.doConserveMomentum && Mathf.Abs(rb.linearVelocityX) > Mathf.Abs(targetSpeedX) && Mathf.Sign(rb.linearVelocityX) == Mathf.Sign(targetSpeedX) && Mathf.Abs(targetSpeedX) > 0.01f)
         {
             accelRateX = 0;
@@ -58,9 +63,10 @@ public class PlayerRunController : MonoBehaviour
             accelRateY = 0;
         }
 
-
         float speedDiffX = targetSpeedX - rb.linearVelocityX;
         float speedDiffY = targetSpeedY - rb.linearVelocityY;
+
+        
 
         float movementX = speedDiffX * accelRateX;
         float movementY = speedDiffY * accelRateY;
