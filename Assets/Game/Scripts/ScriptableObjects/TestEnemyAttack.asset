@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TestEnemyAttack
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackData
   type: 0
-  damage: 2
+  damage: 1.1
   firingRate: 0
