@@ -606,10 +606,10 @@ GameObject:
   - component: {fileID: 622071874}
   - component: {fileID: 622071878}
   - component: {fileID: 622071879}
+  - component: {fileID: 622071882}
   - component: {fileID: 622071877}
   - component: {fileID: 622071880}
   - component: {fileID: 622071883}
-  - component: {fileID: 622071882}
   - component: {fileID: 622071881}
   m_Layer: 0
   m_Name: Player
@@ -705,7 +705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb5e4d5911411d43bc01aa821ebf034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRunController
-  Data: {fileID: 11400000, guid: 6dd05baaf933129448f1277a4ee7e38b, type: 2}
   IsFacingRight: 0
 --- !u!50 &622071878
 Rigidbody2D:
@@ -784,7 +783,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthController
   maxHealth: 100
-  Data: {fileID: 0}
   healthBar: {fileID: 283247594}
 --- !u!114 &622071881
 MonoBehaviour:
@@ -810,6 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576e412e0418b9843942baffc6ccef67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  playerStats: {fileID: 11400000, guid: 09573851fc3fbb04cad09f92ba69cb1c, type: 2}
 --- !u!114 &622071883
 MonoBehaviour:
   m_ObjectHideFlags: 0

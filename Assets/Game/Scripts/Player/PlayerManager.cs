@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IGameManager
 {
+    [SerializeField] private PlayerStatsData playerStats;
+    public static PlayerStatsData PlayerStats;
     public ManagerStatus status {get; private set;}
     private int experience;
+
+    void Start()
+    {
+        PlayerStats = playerStats;
+    }
 
     public void Startup()
     {

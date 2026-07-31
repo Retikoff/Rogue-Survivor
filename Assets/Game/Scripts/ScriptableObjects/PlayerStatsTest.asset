@@ -9,12 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc5c18f97f3f01e4284fec1bc751d261, type: 3}
-  m_Name: MainPlayerData
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerRunData
-  maxSpeed: 3
+  m_Script: {fileID: 11500000, guid: de209056a16d9a54da4fc9a011449fff, type: 3}
+  m_Name: PlayerStatsTest
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsData
+  maxHealth: 100
+  damageResistance: 0
+  healthAmplifier: 0
+  speedAmplifier: 0
+  speed: 4
   acceleration: 1
-  accelAmount: 16.666666
-  decceleration: 3
+  accelAmount: 12.5
+  decceleration: 4
   deccelAmount: 50
   doConserveMomentum: 0

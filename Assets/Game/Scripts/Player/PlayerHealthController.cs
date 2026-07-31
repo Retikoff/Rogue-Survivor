@@ -3,8 +3,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerHealthController : MonoBehaviour
 {
+    /* 
+        философский вопрос что лучше изменять SO или хранить переменную тут currentHealth и от нее плясать
+    */
     [SerializeField] private float maxHealth = 100;
-    [SerializeField] private PlayerStatsData Data;
     private float currentHealth;
     [SerializeField] private HealthBarController healthBar;
 
