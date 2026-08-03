@@ -22,3 +22,5 @@ MonoBehaviour:
   decceleration: 4
   deccelAmount: 50
   doConserveMomentum: 0
+  maxWeaponNum: 4
+  maxAmplifiersNum: 4

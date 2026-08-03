@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
     public ManagerStatus status {get; private set;}
     private int experience;
 
-    void Start()
+    private void Awake()
     {
         PlayerStats = playerStats;
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour, IGameManager
 {
+    [SerializeField] private InventoryUIManager inventoryUI;
     private List<string> items; // not string
 
     public ManagerStatus status {get; private set;}
@@ -15,7 +16,7 @@ public class InventoryManager : MonoBehaviour, IGameManager
         status = ManagerStatus.Started;
     }
 
-    private void DisplayItems()
+    private void DisplayItems() //возможно ненужный метод, лишняя переброска
     {
         string itemDisplay = "Items: ";
         foreach (string item in items)
@@ -25,10 +26,10 @@ public class InventoryManager : MonoBehaviour, IGameManager
         Debug.Log(itemDisplay);
     }
 
-    public void AddItem(string name)
+    public void AddItem(CollectableItemController item)
     {
-        items.Add(name);
-
+        items.Add(item.Data.itemName);
+        inventoryUI.AddItem(item);
         DisplayItems();
     }
 }

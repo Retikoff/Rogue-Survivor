@@ -1,10 +1,9 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStatsData", menuName = "Scriptable Objects/PlayerStatsData")]
 public class PlayerStatsData : ScriptableObject
 {
-    public float maxHealth;
+    [Min(1f)]public float maxHealth;
     //public float basePickUpRange;
     public float damageResistance;
     //public float damageAmplifier;
@@ -16,7 +15,7 @@ public class PlayerStatsData : ScriptableObject
     // exp amplifier
 
     [Header("Run")]
-    public float speed;
+    [Min(0f)] public float speed;
     public float acceleration;
     [HideInInspector] public float accelAmount;
     public float decceleration;
@@ -26,7 +25,11 @@ public class PlayerStatsData : ScriptableObject
 
     
     [Header("Weapons")]
-    public int maxWeaponNum;
+    [Range(1, 6)] public int maxWeaponNum;
+
+    
+    [Header("Amplifiers")]
+    [Range(1,6)] public int maxAmplifiersNum;
 
     private void OnValidate()
     {
