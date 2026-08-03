@@ -37,7 +37,38 @@ public class InventoryUIManager : MonoBehaviour
     {
         if (item.Data.type == ItemType.Weapon)
         {
+            if (currentWeaponSlot + 1 == weaponSlots.Count)
+            {
+                AddWeaponSlot();
+            }
+
             weaponSlots[currentWeaponSlot].transform.GetChild(0).GetComponent<Image>().sprite = item.Data.sprite;
+            currentWeaponSlot++;
         }
+
+        if (item.Data.type == ItemType.Amplifier)
+        {
+            if (currentAmplifierSlot + 1 == amplifierSlots.Count)
+            {
+                AddAmplifierSlot();
+            }
+
+            amplifierSlots[currentAmplifierSlot].transform.GetChild(0).GetComponent<Image>().sprite = item.Data.sprite;
+            currentAmplifierSlot++;
+        }
+    }
+
+    private void AddWeaponSlot()
+    {
+        GameObject newInventorySlot = Instantiate(inventorySlot, weaponInventory.transform);
+        newInventorySlot.GetComponent<Image>().sprite = weaponPlaceholderIcon;
+        weaponSlots.Add(newInventorySlot);
+    }
+
+    private void AddAmplifierSlot()
+    {
+        GameObject newInvetorySlot = Instantiate(inventorySlot, amplifiersInventory.transform);
+        newInvetorySlot.GetComponent<Image>().sprite = amplifierPlaceholderIcon;
+        amplifierSlots.Add(newInvetorySlot);
     }
 }
