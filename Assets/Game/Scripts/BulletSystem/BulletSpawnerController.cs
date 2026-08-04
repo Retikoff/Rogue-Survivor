@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class BulletSpawnerController : MonoBehaviour
 {
-
-    [SerializeField] private BulletSpawnerData Data;
+    public BulletSpawnerData Data = null;
     private GameObject spawnedBullet;
     private float timer = 0f;
 
     void Update()
     {
+        if (Data == null) return;
+
         timer += Time.deltaTime;
         if (Data.spawnerType == SpawnerType.Spin)
         {

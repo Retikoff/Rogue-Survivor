@@ -77,6 +77,7 @@ public class EnemyRunController : MonoBehaviour
 
     private void Turn()
     {
+        // sprite поворачивается, но оружие продолжает стрелять в одном направлении
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;

@@ -15,6 +15,4 @@ MonoBehaviour:
   type: 0
   sprite: {fileID: 4459829494417465688, guid: eaca844ae4c77a044a3b28a0afb70236, type: 3}
   itemName: TestPistol
-  damage: 10
-  firingRate: 0.1
-  projectile: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 5f1760ea240715349a56973bc95107a7, type: 2}

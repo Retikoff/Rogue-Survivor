@@ -8,7 +8,5 @@ public class CollectableItemData : ScriptableObject
     public Sprite sprite;
     public string itemName;
 
-    [ConditionalField("type", ItemType.Weapon)] public float damage;
-    [ConditionalField("type", ItemType.Weapon)] public float firingRate;
-    [ConditionalField("type", ItemType.Weapon)] public GameObject projectile;
+    [ConditionalField("type", ItemType.Weapon)] public BulletSpawnerData weaponData;
 }
