@@ -7,7 +7,6 @@ public class WeaponsController : MonoBehaviour
 {
     private List<GameObject> slots = new();
     private int currentWeaponSlot = 0;
-    private PlayerRunController playerRunController;
 
     private InputAction moveAction;
 

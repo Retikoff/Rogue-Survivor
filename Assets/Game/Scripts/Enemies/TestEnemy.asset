@@ -9,12 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84209e8dcf418a34bb80017b295db090, type: 3}
+  m_Script: {fileID: 11500000, guid: e5b1835d91759d54c8ad640d1c766ae7, type: 3}
   m_Name: TestEnemy
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyRunData
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStatsData
   maxSpeed: 1
-  acceleration: 1
-  accelAmount: 50
+  acceleration: 0.5
+  accelAmount: 25
   decceleration: 1
   deccelAmount: 50
   doConserveMomentum: 0
+  type: 0
+  damage: 1
+  firingRate: 0
+  maxHealth: 30

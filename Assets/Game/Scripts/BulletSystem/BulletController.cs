@@ -5,6 +5,7 @@ public class BulletController : MonoBehaviour
     [HideInInspector] public float bulletLife = 1f;
     [HideInInspector] public float rotation = 0f;
     [HideInInspector] public float speed = 1f;
+    [HideInInspector] public float damage = 1f; // мне не нравятся вот эти publicи
 
     private Vector2 spawnPoint;
     private float timer = 0f;
@@ -29,5 +30,13 @@ public class BulletController : MonoBehaviour
         float x = timer * speed * transform.right.x;
         float y = timer * speed * transform.right.y;
         return new Vector2(x + spawnPoint.x, y + spawnPoint.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<EnemyManager>() != null)
+        {
+            collision.gameObject.SendMessage("TakeDamage", damage);
+        }
     }
 }

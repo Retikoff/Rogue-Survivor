@@ -28,8 +28,10 @@ public class BulletSpawnerController : MonoBehaviour
         if (Data.bulletPrefab)
         {
             spawnedBullet = Instantiate(Data.bulletPrefab, transform.position, Quaternion.identity);
-            spawnedBullet.GetComponent<BulletController>().speed = Data.bulletSpeed;
-            spawnedBullet.GetComponent<BulletController>().bulletLife = Data.bulletLifeTime;
+            BulletController newBulletContoller = spawnedBullet.GetComponent<BulletController>();
+            newBulletContoller.speed = Data.bulletSpeed;
+            newBulletContoller.bulletLife = Data.bulletLifeTime;
+            newBulletContoller.damage = Data.bulletDamage;
             spawnedBullet.transform.rotation = transform.rotation;
         }
     }

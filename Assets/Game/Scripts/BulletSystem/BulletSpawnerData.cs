@@ -7,6 +7,7 @@ public class BulletSpawnerData : ScriptableObject
     public GameObject bulletPrefab;
     public float bulletLifeTime;
     public float bulletSpeed;
+    public float bulletDamage;
     [Header("Spawner")]
     public SpawnerType spawnerType;
     public float firingRate;

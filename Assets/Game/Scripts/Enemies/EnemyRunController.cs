@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyRunController : MonoBehaviour
 {
-    [SerializeField] EnemyRunData Data;
     private Rigidbody2D rb;
     [HideInInspector] public bool IsFacingRight;
     private GameObject player;
@@ -44,21 +43,21 @@ public class EnemyRunController : MonoBehaviour
 
     private void Run()
     {
-        float targetSpeedX = direction.x * Data.maxSpeed;
-        float targetSpeedY = direction.y * Data.maxSpeed;
+        float targetSpeedX = direction.x * EnemyManager.EnemyStats.maxSpeed;
+        float targetSpeedY = direction.y * EnemyManager.EnemyStats.maxSpeed;
 
         float accelRateX;
         float accelRateY;
 
-        accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? Data.accelAmount : Data.accelAmount;
-        accelRateY = (Mathf.Abs(targetSpeedY) > 0.01f) ? Data.accelAmount : Data.accelAmount;
+        accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? EnemyManager.EnemyStats.accelAmount : EnemyManager.EnemyStats.accelAmount;
+        accelRateY = (Mathf.Abs(targetSpeedY) > 0.01f) ? EnemyManager.EnemyStats.accelAmount : EnemyManager.EnemyStats.accelAmount;
     
-        if (Data.doConserveMomentum && Mathf.Abs(rb.linearVelocityX) > Mathf.Abs(targetSpeedX) && Mathf.Sign(rb.linearVelocityX) == Mathf.Sign(targetSpeedX) && Mathf.Abs(targetSpeedX) > 0.01f)
+        if (EnemyManager.EnemyStats.doConserveMomentum && Mathf.Abs(rb.linearVelocityX) > Mathf.Abs(targetSpeedX) && Mathf.Sign(rb.linearVelocityX) == Mathf.Sign(targetSpeedX) && Mathf.Abs(targetSpeedX) > 0.01f)
         {
             accelRateX = 0;
         }
 
-        if (Data.doConserveMomentum && Mathf.Abs(rb.linearVelocityY) > Mathf.Abs(targetSpeedY) && Mathf.Sign(rb.linearVelocityY) == Mathf.Sign(targetSpeedY) && Mathf.Abs(targetSpeedY) > 0.01f)
+        if (EnemyManager.EnemyStats.doConserveMomentum && Mathf.Abs(rb.linearVelocityY) > Mathf.Abs(targetSpeedY) && Mathf.Sign(rb.linearVelocityY) == Mathf.Sign(targetSpeedY) && Mathf.Abs(targetSpeedY) > 0.01f)
         {
             accelRateY = 0;
         }

@@ -2,12 +2,11 @@ using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour
 {
-    [SerializeField] private EnemyAttackData Data;
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collider)
     {
-        if (collision.gameObject.name == "Player")
+        if (collider.gameObject.name == "Player")
         {
-            collision.gameObject.SendMessage("TakeDamage", Data.damage);
+            collider.gameObject.SendMessage("TakeDamage", EnemyManager.EnemyStats.damage);
         }
     }
 }
