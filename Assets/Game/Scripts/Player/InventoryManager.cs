@@ -4,10 +4,9 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour, IGameManager
 {
     [SerializeField] private InventoryUIManager inventoryUI;
+    private WeaponsController weaponsController;
     private List<string> items; // not string
-    private List<GameObject> weaponSlots = new();
-    private List<GameObject> amplifierSlots = new();
-    private int currentWeaponSlot = 0;
+    private List<GameObject> amplifierSlots = new(); //amplifiersController?
     private int currentAmplifierSlot = 0;
 
     public ManagerStatus status {get; private set;}
@@ -23,12 +22,7 @@ public class InventoryManager : MonoBehaviour, IGameManager
 
     private void Start()
     {
-        for (int i = 0; i < PlayerManager.PlayerStats.maxWeaponNum; i++)
-        {
-            GameObject newSlot = new GameObject("Weapon Slot " + i, typeof(BulletSpawnerController));
-            newSlot.transform.SetParent(this.transform);
-            weaponSlots.Add(newSlot);
-        }
+        weaponsController = GetComponent<WeaponsController>();
     }
 
     private void DisplayItems() //возможно ненужный метод, лишняя переброска
@@ -53,9 +47,8 @@ public class InventoryManager : MonoBehaviour, IGameManager
     {
         if (item.Data.type == ItemType.Weapon)
         {
-            weaponSlots[currentWeaponSlot].GetComponent<BulletSpawnerController>().Data = item.Data.weaponData; //боже что это (я плохо поспал когда писал это)
-            currentWeaponSlot++;
-        }
+            weaponsController.ApplyItem(item);
+        }   
 
         //что такое amplifier?
     }
