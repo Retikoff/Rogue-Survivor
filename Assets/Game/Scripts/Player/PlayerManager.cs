@@ -5,7 +5,6 @@ public class PlayerManager : MonoBehaviour, IGameManager
     [SerializeField] private PlayerStatsData playerStats;
     public static PlayerStatsData PlayerStats;
     public ManagerStatus status {get; private set;}
-    private int experience;
 
     private void Awake()
     {
@@ -17,10 +16,5 @@ public class PlayerManager : MonoBehaviour, IGameManager
         Debug.Log("Player manager starting..,");
 
         status = ManagerStatus.Started;
-    }
-
-    public void AddExp(int amount)
-    {
-        experience += amount;
     }
 }

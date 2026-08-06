@@ -26,7 +26,10 @@ public class EnemyHealthController : MonoBehaviour
     {
         //animation?!
         
-        //spawn exp shard
+        if (UnityEngine.Random.Range(0, 100) < EnemyManager.EnemyStats.shardDropChance)
+        {
+            Instantiate(EnemyManager.EnemyStats.expShard, transform.position, transform.rotation);
+        }
 
         Destroy(this.gameObject);
     }

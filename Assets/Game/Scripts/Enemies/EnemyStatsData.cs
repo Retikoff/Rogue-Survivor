@@ -29,6 +29,10 @@ public class EnemyStatsData : ScriptableObject
     public float maxHealth;
     //public float healthScale;
 
+    [Header("DeathShard")]
+    public GameObject expShard = null;
+    [Range(0,100)] public float shardDropChance;
+
 
     private void OnValidate()
     {
@@ -39,5 +43,14 @@ public class EnemyStatsData : ScriptableObject
         acceleration = Mathf.Clamp(acceleration, 0.01f, maxSpeed);
         decceleration = Mathf.Clamp(decceleration, 0.01f, maxSpeed);
         #endregion 
+
+        #region expShardCheck
+
+        // if (expShard.GetComponent<CollectableItemController>().Data.type != ItemType.ExpShard)
+        // {
+        //     expShard = null;
+        // }
+
+        #endregion
     }
 }
