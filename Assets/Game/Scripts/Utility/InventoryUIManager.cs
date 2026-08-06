@@ -33,29 +33,39 @@ public class InventoryUIManager : MonoBehaviour
         }
     }
 
-    public void AddItem(CollectableItemController item)
+    public void AddWeapon(CollectableItemController item)
     {
-        if (item.Data.type == ItemType.Weapon)
+        if (item.Data.type != ItemType.Weapon)
         {
-            if (currentWeaponSlot + 1 == weaponSlots.Count)
-            {
-                AddWeaponSlot();
-            }
+            Debug.LogError("Failed to add " + item.Data.type + " to weapons inventory");
+            return;
+        } 
 
-            weaponSlots[currentWeaponSlot].transform.GetChild(0).GetComponent<Image>().sprite = item.Data.sprite;
-            currentWeaponSlot++;
+        if (currentWeaponSlot + 1 == weaponSlots.Count)
+        {
+            AddWeaponSlot();
         }
 
-        if (item.Data.type == ItemType.Amplifier)
+        weaponSlots[currentWeaponSlot].transform.GetChild(0).GetComponent<Image>().sprite = item.Data.sprite;
+        currentWeaponSlot++;
+    }
+    
+    public void AddAmplifier(CollectableItemController item)
+    {
+        if (item.Data.type != ItemType.Amplifier)
         {
-            if (currentAmplifierSlot + 1 == amplifierSlots.Count)
-            {
-                AddAmplifierSlot();
-            }
-
-            amplifierSlots[currentAmplifierSlot].transform.GetChild(0).GetComponent<Image>().sprite = item.Data.sprite;
-            currentAmplifierSlot++;
+            Debug.LogError("Failed to add " + item.Data.type + " to amplifiers inventory");
+            return;
         }
+
+
+        if (currentAmplifierSlot + 1 == amplifierSlots.Count)
+        {
+            AddAmplifierSlot();
+        }
+
+        amplifierSlots[currentAmplifierSlot].transform.GetChild(0).GetComponent<Image>().sprite = item.Data.sprite;
+        currentAmplifierSlot++;
     }
 
     private void AddWeaponSlot()

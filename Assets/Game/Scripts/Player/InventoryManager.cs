@@ -4,8 +4,9 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour, IGameManager
 {
     [SerializeField] private InventoryUIManager inventoryUI;
+    private PlayerExperienceController playerExpController;
     private WeaponsController weaponsController;
-    private List<string> items; // not string
+    private List<string> items; // сделать из нее журнал действий (например подобрал большой опыт, поднял пистолет, поднял книгу на скорость)
     private List<GameObject> amplifierSlots = new(); //amplifiersController?
     private int currentAmplifierSlot = 0;
 
@@ -15,31 +16,17 @@ public class InventoryManager : MonoBehaviour, IGameManager
     {
         Debug.Log("Inventory manager starting...");
 
-        items = new List<string>();
-
         status = ManagerStatus.Started;
     }
 
     private void Start()
     {
         weaponsController = GetComponent<WeaponsController>();
+        playerExpController = GetComponent<PlayerExperienceController>();
     }
 
-    private void DisplayItems() //возможно ненужный метод, лишняя переброска
+    public void CollectItem(CollectableItemController item)
     {
-        string itemDisplay = "Items: ";
-        foreach (string item in items)
-        {
-            itemDisplay += item + " ";
-        }
-        Debug.Log(itemDisplay);
-    }
-
-    public void AddItem(CollectableItemController item)
-    {
-        items.Add(item.Data.itemName);
-        inventoryUI.AddItem(item);
-        DisplayItems();
         ApplyItem(item);
     }
 
@@ -48,8 +35,14 @@ public class InventoryManager : MonoBehaviour, IGameManager
         if (item.Data.type == ItemType.Weapon)
         {
             weaponsController.ApplyItem(item);
+            inventoryUI.AddWeapon(item);
         }   
 
         //что такое amplifier?
+
+        if (item.Data.type == ItemType.ExpShard)
+        {
+            playerExpController.GetExp(item.Data.expValue);
+        }
     }
 }

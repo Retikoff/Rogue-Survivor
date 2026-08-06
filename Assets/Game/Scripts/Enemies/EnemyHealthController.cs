@@ -25,6 +25,9 @@ public class EnemyHealthController : MonoBehaviour
     public void Death()
     {
         //animation?!
+        
+        //spawn exp shard
+
         Destroy(this.gameObject);
     }
 }

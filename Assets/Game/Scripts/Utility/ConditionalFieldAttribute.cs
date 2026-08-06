@@ -3,11 +3,11 @@ using UnityEngine;
 public class ConditionalFieldAttribute : PropertyAttribute
 {
     public string conditionalField;
-    public object compareValue;
+    public object[] compareValues;
 
-    public ConditionalFieldAttribute(string conditionalField, object compareValue = null)
+    public ConditionalFieldAttribute(string conditionalField, params object[] compareValues)
     {
         this.conditionalField = conditionalField;
-        this.compareValue = compareValue;
+        this.compareValues = compareValues;
     }   
 }

@@ -9,10 +9,10 @@ public class PlayerStatsData : ScriptableObject
     //public float damageAmplifier;
     public float healthAmplifier;
     public float speedAmplifier;
+    public float expAmplifier;
     //public float pickUpRangeAmplifier;
     //weapon range
     // weapon duration
-    // exp amplifier
 
     [Header("Run")]
     [Min(0f)] public float speed;

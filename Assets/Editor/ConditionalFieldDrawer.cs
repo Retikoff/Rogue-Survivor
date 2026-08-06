@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEditor;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using System.Linq;
 
 /** 
     Attribute ConditionalField для отображения полей в инспекторе в зависимости от значения других полей
@@ -36,27 +38,39 @@ public class ConditionalFieldDrawer : PropertyDrawer
 
         if (conditionProp == null) return true;
     
-        if (attr.compareValue == null)
+        if (attr.compareValues == null || attr.compareValues.Length == 0)
         {
             if (conditionProp.propertyType == SerializedPropertyType.Boolean)
             {
                 return conditionProp.boolValue;
             }
+            return true;
         }
-        else
+
+        if (conditionProp.propertyType == SerializedPropertyType.Enum)
         {
-            switch (conditionProp.propertyType)
-            {
-                case SerializedPropertyType.Enum:
-                    return conditionProp.enumValueIndex == (int)attr.compareValue;
-                case SerializedPropertyType.Integer:
-                    return conditionProp.intValue == (int)attr.compareValue; 
-                case SerializedPropertyType.Float:
-                    return conditionProp.floatValue == (float)attr.compareValue;
-                case SerializedPropertyType.String:
-                    return conditionProp.stringValue == (string)attr.compareValue;
-            }
+            int currentEnumValue = conditionProp.enumValueIndex;
+            return attr.compareValues.Any(val => (int)val == currentEnumValue);
         }
+
+        if (conditionProp.propertyType == SerializedPropertyType.Integer)
+        {
+            int currentInt = conditionProp.intValue;
+            return attr.compareValues.Any(val => (int)val == currentInt);
+        }
+
+        if (conditionProp.propertyType == SerializedPropertyType.Float)
+        {
+            float currentFloat = conditionProp.floatValue;
+            return attr.compareValues.Any(val => Mathf.Approximately((float)val, currentFloat));
+        }
+
+        if (conditionProp.propertyType == SerializedPropertyType.String)
+        {
+            string currentString = conditionProp.stringValue;
+            return attr.compareValues.Any(val => (string)val == currentString);
+        }
+
         return true;
     }
 
