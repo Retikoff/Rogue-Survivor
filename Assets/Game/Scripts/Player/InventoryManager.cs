@@ -6,9 +6,8 @@ public class InventoryManager : MonoBehaviour, IGameManager
     [SerializeField] private InventoryUIManager inventoryUI;
     private PlayerExperienceController playerExpController;
     private WeaponsController weaponsController;
+    private AmplifiersController amplifiersController;
     private List<string> items; // сделать из нее журнал действий (например подобрал большой опыт, поднял пистолет, поднял книгу на скорость)
-    private List<GameObject> amplifierSlots = new(); //amplifiersController?
-    private int currentAmplifierSlot = 0;
 
     public ManagerStatus status {get; private set;}
 
@@ -22,6 +21,7 @@ public class InventoryManager : MonoBehaviour, IGameManager
     private void Start()
     {
         weaponsController = GetComponent<WeaponsController>();
+        amplifiersController = GetComponent<AmplifiersController>();
         playerExpController = GetComponent<PlayerExperienceController>();
     }
 
@@ -38,7 +38,11 @@ public class InventoryManager : MonoBehaviour, IGameManager
             inventoryUI.AddWeapon(item);
         }   
 
-        //что такое amplifier?
+        if (item.Data.type == ItemType.Amplifier)
+        {
+            amplifiersController.ApplyItem(item);
+            inventoryUI.AddAmplifier(item);
+        }
 
         if (item.Data.type == ItemType.ExpShard)
         {

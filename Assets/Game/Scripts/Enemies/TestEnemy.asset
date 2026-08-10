@@ -22,3 +22,5 @@ MonoBehaviour:
   damage: 1
   firingRate: 0
   maxHealth: 30
+  expShard: {fileID: 2323083859924306998, guid: afec75368fff4e74691f3deb5544a030, type: 3}
+  shardDropChance: 71.5

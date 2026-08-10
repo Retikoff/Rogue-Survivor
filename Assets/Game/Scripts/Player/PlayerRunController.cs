@@ -38,8 +38,8 @@ public class PlayerRunController : MonoBehaviour
 
     private void Run()
     {
-        float targetSpeedX = moveValue.x * PlayerManager.PlayerStats.speed;
-        float targetSpeedY = moveValue.y * PlayerManager.PlayerStats.speed;
+        float targetSpeedX = moveValue.x * PlayerManager.PlayerStats.speed * PlayerManager.PlayerStats.speedAmplifier;
+        float targetSpeedY = moveValue.y * PlayerManager.PlayerStats.speed * PlayerManager.PlayerStats.speedAmplifier;
 
         float accelRateX;
         float accelRateY;

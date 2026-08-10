@@ -5,6 +5,13 @@ public class HealthBarController : MonoBehaviour
 {
     [SerializeField] private Slider slider;
 
+    private void Start()
+    {
+        PlayerHealthController healthController = GameObject.Find("Player").GetComponent<PlayerHealthController>();
+        healthController.OnCurrentHealthChanged += SetHealth;
+        PlayerManager.PlayerStats.OnMaxHealthChanged += SetMaxHealth;
+    }
+
     public void SetMaxHealth(float health)
     {
         slider.maxValue = health;

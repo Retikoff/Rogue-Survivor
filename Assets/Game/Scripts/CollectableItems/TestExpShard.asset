@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da692d5d4b80e4d489976c3913ab128c, type: 3}
   m_Name: TestExpShard
   m_EditorClassIdentifier: Assembly-CSharp::CollectableItemData
-  type: 0
-  sprite: {fileID: 0}
-  itemName: 
+  type: 2
+  sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  itemName: LittleExpShard
   weaponData: {fileID: 0}
-  expValue: 0
+  expValue: 3

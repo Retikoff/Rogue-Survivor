@@ -8,7 +8,8 @@ public class PlayerManager : MonoBehaviour, IGameManager
 
     private void Awake()
     {
-        PlayerStats = playerStats;
+        //Instantiate it so when i change it on runtime it wont stay after exit play mode
+        PlayerStats = Instantiate(playerStats);
     }
 
     public void Startup()

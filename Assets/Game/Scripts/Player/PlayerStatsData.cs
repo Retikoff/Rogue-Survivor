@@ -1,15 +1,36 @@
+using System;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerStatsData", menuName = "Scriptable Objects/PlayerStatsData")]
 public class PlayerStatsData : ScriptableObject
 {
-    [Min(1f)]public float maxHealth;
+    [Min(1f)] public float maxHealth;
+    public event Action<float> OnMaxHealthChanged;
+    public float MaxHealth
+    {
+        get => maxHealth;
+        set
+        {
+            maxHealth = value;
+            OnMaxHealthChanged?.Invoke(maxHealth);
+        }
+    }
     //public float basePickUpRange;
     public float damageResistance;
     //public float damageAmplifier;
-    public float healthAmplifier;
-    public float speedAmplifier;
-    public float expAmplifier;
+    [Min(1f)] public float healthAmplifier;
+    public float HealthAmplifier{
+        get => healthAmplifier;
+        set
+        {
+            healthAmplifier = value;
+            Debug.Log("Health amp: " + value);
+            MaxHealth *= value;
+        }
+    }
+    [Min(1f)] public float speedAmplifier;
+    [Min(1f)] public float expAmplifier;
     //public float pickUpRangeAmplifier;
     //weapon range
     // weapon duration

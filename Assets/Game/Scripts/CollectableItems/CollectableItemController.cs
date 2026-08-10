@@ -8,7 +8,6 @@ public class CollectableItemController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Managers.Inventory.CollectItem(this);
-        this.gameObject.SetActive(false);
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 }

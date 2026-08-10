@@ -58,7 +58,6 @@ public class InventoryUIManager : MonoBehaviour
             return;
         }
 
-
         if (currentAmplifierSlot + 1 == amplifierSlots.Count)
         {
             AddAmplifierSlot();
