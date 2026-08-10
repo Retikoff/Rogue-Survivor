@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da692d5d4b80e4d489976c3913ab128c, type: 3}
+  m_Name: TestSpeedAmp
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableItemData
+  type: 1
+  sprite: {fileID: -5444726827232956361, guid: 622e8be56f2ca4540b45e8dac0ec9e26, type: 3}
+  itemName: Speed Amplifier
+  weaponData: {fileID: 0}
+  playerStat: 1
+  ampValue: 1.5
+  expValue: 0

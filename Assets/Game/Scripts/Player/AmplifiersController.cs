@@ -23,12 +23,6 @@ public class AmplifiersController : MonoBehaviour
                 PlayerManager.PlayerStats.speedAmplifier = item.Data.ampValue;
                 break;
             
-            /* это ужасно это не должно так выглядеть
-                надо сделать события на которые подписать статы игрока
-                чтобы при изменении их они обновлялись у игрока
-                с другой стороны тогда у меня не будет такого доступа через Editor
-                всё будет гвоздями прибито в коде
-             */
         }
         currentAmplifierSlot++;
     }
