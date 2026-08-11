@@ -21,4 +21,10 @@ public class CollectableItemData : ScriptableObject
     #region ExpShard
     [ConditionalField("type", ItemType.ExpShard)] public float expValue;
     #endregion
+
+    #region Weapon and Amplifier
+
+    [ConditionalField("type", ItemType.Weapon, ItemType.Amplifier)] public ItemProgression progression;
+
+    #endregion
 }
