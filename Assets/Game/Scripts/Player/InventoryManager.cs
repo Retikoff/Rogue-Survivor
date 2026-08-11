@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(WeaponsController))]
+[RequireComponent(typeof(AmplifiersController))]
+[RequireComponent(typeof(PlayerExperienceController))]
 public class InventoryManager : MonoBehaviour, IGameManager
 {
     [SerializeField] private InventoryUIManager inventoryUI;

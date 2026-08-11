@@ -8,6 +8,7 @@ public class Managers : MonoBehaviour
 {
     public static PlayerManager Player {get; private set;}
     public static InventoryManager Inventory {get; private set;}
+    public static GameRulesManager GameRules {get; private set;}
 
     private List<IGameManager> startSequence;
 
@@ -15,10 +16,12 @@ public class Managers : MonoBehaviour
     {
         Player = GetComponent<PlayerManager>();
         Inventory = GetComponent<InventoryManager>();
+        GameRules = GameObject.Find("GameRulesManager").GetComponent<GameRulesManager>();
 
         startSequence = new List<IGameManager>();
         startSequence.Add(Player);
         startSequence.Add(Inventory);
+        startSequence.Add(GameRules);
 
         StartCoroutine(StartupManagers());
     }
