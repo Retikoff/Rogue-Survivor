@@ -3,7 +3,13 @@ using UnityEngine;
 
 public class CollectableItemController : MonoBehaviour
 {
-    public CollectableItemData Data;
+    [SerializeField] private CollectableItemData data;
+    [HideInInspector] public CollectableItemData Data;
+
+    private void Start()
+    {
+        Data = Instantiate(data);
+    }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

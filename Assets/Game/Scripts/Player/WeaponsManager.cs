@@ -3,12 +3,16 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class WeaponsController : MonoBehaviour
+public class WeaponsManager : MonoBehaviour, IGameManager
 {
     private List<GameObject> slots = new();
+    private List<CollectableItemController> items = new();
     private int currentWeaponSlot = 0;
+    public int CurrentWeaponSlot {get; private set;}
 
     private InputAction moveAction;
+
+    public ManagerStatus status {get; private set;}
 
     private void Awake()
     {
@@ -25,10 +29,19 @@ public class WeaponsController : MonoBehaviour
         }
     }
 
+    public void Startup()
+    {
+        Debug.Log("Weapons manager starting...");
+
+        status = ManagerStatus.Started;
+    }
+
     public void ApplyItem(CollectableItemController item)
     {
-        slots[currentWeaponSlot].GetComponent<BulletSpawnerController>().Data = item.Data.weaponData; //боже что это (я плохо поспал когда писал это)
-        currentWeaponSlot++;
+        // if currenWeaponSlot > slots.Count
+        slots[CurrentWeaponSlot].GetComponent<BulletSpawnerController>().Data = item.Data.weaponData; //боже что это (я плохо поспал когда писал это)
+        items.Add(item);
+        CurrentWeaponSlot++;
     }
 
     public void Update()
@@ -44,4 +57,6 @@ public class WeaponsController : MonoBehaviour
             }
         }
     }
+
+    public List<CollectableItemController> GetItems() => items;
 }

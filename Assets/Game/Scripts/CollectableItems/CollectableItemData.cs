@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CollectableItemData", menuName = "Scriptable Objects/CollectableItemData")]
@@ -25,6 +26,8 @@ public class CollectableItemData : ScriptableObject
     #region Weapon and Amplifier
 
     [ConditionalField("type", ItemType.Weapon, ItemType.Amplifier)] public ItemProgression progression;
+    [HideInInspector] public int level = 0;
+    [ConditionalField("type", ItemType.Weapon, ItemType.Amplifier)] public String itemDescription;
 
     #endregion
 }

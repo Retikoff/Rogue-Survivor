@@ -1,15 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(WeaponsController))]
-[RequireComponent(typeof(AmplifiersController))]
 [RequireComponent(typeof(PlayerExperienceController))]
 public class InventoryManager : MonoBehaviour, IGameManager
 {
     [SerializeField] private InventoryUIManager inventoryUI;
     private PlayerExperienceController playerExpController;
-    private WeaponsController weaponsController;
-    private AmplifiersController amplifiersController;
     private List<string> items; // сделать из нее журнал действий (например подобрал большой опыт, поднял пистолет, поднял книгу на скорость)
 
     public ManagerStatus status {get; private set;}
@@ -23,8 +19,6 @@ public class InventoryManager : MonoBehaviour, IGameManager
 
     private void Start()
     {
-        weaponsController = GetComponent<WeaponsController>();
-        amplifiersController = GetComponent<AmplifiersController>();
         playerExpController = GetComponent<PlayerExperienceController>();
     }
 
@@ -37,13 +31,13 @@ public class InventoryManager : MonoBehaviour, IGameManager
     {
         if (item.Data.type == ItemType.Weapon)
         {
-            weaponsController.ApplyItem(item);
+            Managers.Weapons.ApplyItem(item);
             inventoryUI.AddWeapon(item);
         }   
 
         if (item.Data.type == ItemType.Amplifier)
         {
-            amplifiersController.ApplyItem(item);
+            Managers.Amplifiers.ApplyItem(item);
             inventoryUI.AddAmplifier(item);
         }
 

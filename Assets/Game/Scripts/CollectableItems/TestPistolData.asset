@@ -16,3 +16,9 @@ MonoBehaviour:
   sprite: {fileID: 4459829494417465688, guid: eaca844ae4c77a044a3b28a0afb70236, type: 3}
   itemName: TestPistol
   weaponData: {fileID: 11400000, guid: 5f1760ea240715349a56973bc95107a7, type: 2}
+  playerStat: 0
+  ampValue: 0
+  expValue: 0
+  progression: {fileID: 0}
+  level: 0
+  itemDescription: Just a simple pistol that shoots bullets

@@ -1,10 +1,21 @@
 using System;
 using Unity.Profiling;
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 public class PlayerExperienceController : MonoBehaviour
 {
     private int currentLvl;
+    public event Action OnPlayerLevelUped;
+    public int CurrentLvl
+    {
+        get => currentLvl;
+        set
+        {
+            currentLvl = value;
+            OnPlayerLevelUped?.Invoke();
+        }
+    }
 
     private float currentExp;
     public event Action<float> OnCurrentExpChanged;
@@ -50,9 +61,7 @@ public class PlayerExperienceController : MonoBehaviour
 
     private void LevelUp()
     {
-        currentLvl += 1;
-        
-        // let player upgrade inventory
+        CurrentLvl += 1;
 
         ChangeExpToProgress();
 

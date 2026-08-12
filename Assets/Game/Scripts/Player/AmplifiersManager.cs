@@ -1,15 +1,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmplifiersController : MonoBehaviour
+public class AmplifiersManager : MonoBehaviour, IGameManager
 {
-    private List<CollectableItemController> slots = new();
+    private List<CollectableItemController> items = new();
     private int currentAmplifierSlot = 0;
+    public int CurrentAmplifierSlot { get; private set; }
+
+    public ManagerStatus status {get; private set;}
+
+    public void Startup()
+    {
+        Debug.Log("Amplifiers manager starting...");
+
+        status = ManagerStatus.Started;
+    }
+
     public void ApplyItem(CollectableItemController item)
     {
-        slots.Add(item);
+        items.Add(item);
         ApplyToPlayer(item);
-        currentAmplifierSlot++;
+        CurrentAmplifierSlot++;
     }
 
     private void ApplyToPlayer(CollectableItemController item)
@@ -24,6 +35,8 @@ public class AmplifiersController : MonoBehaviour
                 break;
             
         }
-        currentAmplifierSlot++;
+        CurrentAmplifierSlot++;
     }
+
+    public List<CollectableItemController> GetItems() => items;
 }
