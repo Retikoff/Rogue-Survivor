@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour, IGameManager
 {
     [SerializeField] private PlayerStatsData playerStats;
-    public static PlayerStatsData PlayerStats;
+    public PlayerStatsData PlayerStats;
     public ManagerStatus status {get; private set;}
 
     private void Awake()

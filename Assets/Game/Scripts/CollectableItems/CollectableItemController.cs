@@ -22,4 +22,26 @@ public class CollectableItemController : MonoBehaviour
     {
 
     }
+
+    // для List.Remove() в GameRules
+    public override bool Equals(object obj)
+    {
+        if (obj is CollectableItemController other)
+        {
+            return this.Data.itemName == other.Data.itemName;
+        }
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Data.itemName);
+    }
+
+    // для глубокой копии List'a
+
+    public CollectableItemController Clone()
+    {
+        return new CollectableItemController {Data = Instantiate(this.Data)};
+    }
 }

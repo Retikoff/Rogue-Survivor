@@ -23,7 +23,7 @@ public class WeaponsManager : MonoBehaviour, IGameManager
 
     private void Start()
     {
-        for (int i = 0; i < PlayerManager.PlayerStats.maxWeaponNum; i++)
+        for (int i = 0; i < Managers.Player.PlayerStats.maxWeaponNum; i++)
         {
             GameObject newSlot = new GameObject("Weapon Slot " + i, typeof(BulletSpawnerController));
             newSlot.transform.SetParent(this.transform);

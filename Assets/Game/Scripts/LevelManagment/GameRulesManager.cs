@@ -3,12 +3,12 @@ using UnityEngine;
 public class GameRulesManager : MonoBehaviour, IGameManager
 {
     [SerializeField] private GameRulesData gameRules;
-    public static GameRulesData GameRules;
+    public GameRulesData Data;
     public ManagerStatus status {get; private set;}
 
     private void Awake()
     {
-        GameRules = gameRules;
+        Data = Instantiate(gameRules);
     }
 
     public void Startup()
@@ -16,5 +16,18 @@ public class GameRulesManager : MonoBehaviour, IGameManager
         Debug.Log("GameRules manager starting..,");
 
         status = ManagerStatus.Started;
+    }
+
+    public void DeleteItemFromAccessible(CollectableItemController item)
+    {
+        if (item.Data.type == ItemType.Weapon)
+        {
+            Data.accessableWeapons.Remove(item);
+        }
+
+        if (item.Data.type == ItemType.Amplifier)
+        {
+            Data.accessableAmplifiers.Remove(item);
+        }
     }
 }

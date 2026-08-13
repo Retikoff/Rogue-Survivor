@@ -25,6 +25,7 @@ public class InventoryManager : MonoBehaviour, IGameManager
     public void CollectItem(CollectableItemController item)
     {
         ApplyItem(item);
+        Managers.GameRules.DeleteItemFromAccessible(item);
     }
 
     private void ApplyItem(CollectableItemController item)

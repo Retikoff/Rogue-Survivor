@@ -50,7 +50,7 @@ public class PlayerExperienceController : MonoBehaviour
 
     public void GetExp(float value)
     {
-        CurrentExp += value * PlayerManager.PlayerStats.expAmplifier;
+        CurrentExp += value * Managers.Player.PlayerStats.expAmplifier;
 
         while (CurrentExp >= CurrentExpToProgress)
         {

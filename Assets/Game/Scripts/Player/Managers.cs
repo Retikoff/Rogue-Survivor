@@ -22,7 +22,7 @@ public class Managers : MonoBehaviour
     {
         Player = GetComponent<PlayerManager>();
         Inventory = GetComponent<InventoryManager>();
-        //GameRules = GameObject.Find("GameRulesManager").GetComponent<GameRulesManager>();
+        GameRules = GameObject.Find("GameRulesManager").GetComponent<GameRulesManager>();
         Upgrade = GetComponent<UpgradeManager>();
         Weapons = GetComponent<WeaponsManager>();
         Amplifiers = GetComponent<AmplifiersManager>();
@@ -30,7 +30,7 @@ public class Managers : MonoBehaviour
         startSequence = new List<IGameManager>();
         startSequence.Add(Player);
         startSequence.Add(Inventory);
-        //startSequence.Add(GameRules);
+        startSequence.Add(GameRules);
         startSequence.Add(Upgrade);
         startSequence.Add(Weapons);
         startSequence.Add(Amplifiers);
