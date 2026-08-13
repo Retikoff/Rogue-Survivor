@@ -16,4 +16,10 @@ public class CollectableItemController : MonoBehaviour
         Managers.Inventory.CollectItem(this);
         Destroy(this.gameObject);
     }
+
+    // upgrade() должен быть тут
+    public void Upgrade()
+    {
+
+    }
 }

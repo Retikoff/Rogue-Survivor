@@ -41,7 +41,7 @@ public class InventoryUIManager : MonoBehaviour
             return;
         } 
 
-        if (currentWeaponSlot + 1 == weaponSlots.Count)
+        if (currentWeaponSlot == weaponSlots.Count)
         {
             AddWeaponSlot();
         }
@@ -58,7 +58,7 @@ public class InventoryUIManager : MonoBehaviour
             return;
         }
 
-        if (currentAmplifierSlot + 1 == amplifierSlots.Count)
+        if (currentAmplifierSlot == amplifierSlots.Count)
         {
             AddAmplifierSlot();
         }

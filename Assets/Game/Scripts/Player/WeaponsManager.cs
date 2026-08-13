@@ -7,6 +7,8 @@ public class WeaponsManager : MonoBehaviour, IGameManager
 {
     private List<GameObject> slots = new();
     private List<CollectableItemController> items = new();
+    public List<CollectableItemController> GetItems() => items;
+    public int GetItemsCount() => items.Count;
     private int currentWeaponSlot = 0;
     public int CurrentWeaponSlot {get; private set;}
 
@@ -57,6 +59,4 @@ public class WeaponsManager : MonoBehaviour, IGameManager
             }
         }
     }
-
-    public List<CollectableItemController> GetItems() => items;
 }
