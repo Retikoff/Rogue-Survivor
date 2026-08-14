@@ -18,14 +18,14 @@ public class InventoryUIManager : MonoBehaviour
     private void Start()
     {
         //Coroutine istead of for in Start ??
-        for (int i = 0; i < PlayerManager.PlayerStats.maxWeaponNum; i++)
+        for (int i = 0; i < Managers.Player.PlayerStats.maxWeaponNum; i++)
         {
             GameObject newInventorySlot = Instantiate(inventorySlot, weaponInventory.transform);
             newInventorySlot.GetComponent<Image>().sprite = weaponPlaceholderIcon;
             weaponSlots.Add(newInventorySlot);
         }
 
-        for (int i = 0; i < PlayerManager.PlayerStats.maxAmplifiersNum; i++)
+        for (int i = 0; i < Managers.Player.PlayerStats.maxAmplifiersNum; i++)
         {
             GameObject newInvetorySlot = Instantiate(inventorySlot, amplifiersInventory.transform);
             newInvetorySlot.GetComponent<Image>().sprite = amplifierPlaceholderIcon;

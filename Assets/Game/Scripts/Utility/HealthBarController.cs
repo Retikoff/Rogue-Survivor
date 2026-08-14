@@ -9,7 +9,7 @@ public class HealthBarController : MonoBehaviour
     {
         PlayerHealthController healthController = GameObject.Find("Player").GetComponent<PlayerHealthController>();
         healthController.OnCurrentHealthChanged += SetHealth;
-        PlayerManager.PlayerStats.OnMaxHealthChanged += SetMaxHealth;
+        Managers.Player.PlayerStats.OnMaxHealthChanged += SetMaxHealth;
     }
 
     public void SetMaxHealth(float health)

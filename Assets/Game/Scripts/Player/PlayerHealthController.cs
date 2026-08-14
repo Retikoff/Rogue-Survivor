@@ -22,11 +22,11 @@ public class PlayerHealthController : MonoBehaviour
 
     void Start()
     {
-        CurrentHealth = PlayerManager.PlayerStats.maxHealth;
+        CurrentHealth = Managers.Player.PlayerStats.maxHealth;
     }
 
     public void TakeDamage(float value)
     {
-        CurrentHealth -= value * (1 - PlayerManager.PlayerStats.damageResistance);
+        CurrentHealth -= value * (1 - Managers.Player.PlayerStats.damageResistance);
     }
 }

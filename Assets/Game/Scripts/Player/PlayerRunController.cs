@@ -38,21 +38,21 @@ public class PlayerRunController : MonoBehaviour
 
     private void Run()
     {
-        float targetSpeedX = moveValue.x * PlayerManager.PlayerStats.speed * PlayerManager.PlayerStats.speedAmplifier;
-        float targetSpeedY = moveValue.y * PlayerManager.PlayerStats.speed * PlayerManager.PlayerStats.speedAmplifier;
+        float targetSpeedX = moveValue.x * Managers.Player.PlayerStats.speed * Managers.Player.PlayerStats.speedAmplifier;
+        float targetSpeedY = moveValue.y * Managers.Player.PlayerStats.speed * Managers.Player.PlayerStats.speedAmplifier;
 
         float accelRateX;
         float accelRateY;
 
-        accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? PlayerManager.PlayerStats.accelAmount : PlayerManager.PlayerStats.accelAmount;
-        accelRateY = (Mathf.Abs(targetSpeedY) > 0.01f) ? PlayerManager.PlayerStats.accelAmount : PlayerManager.PlayerStats.accelAmount;
+        accelRateX = (Mathf.Abs(targetSpeedX) > 0.01f) ? Managers.Player.PlayerStats.accelAmount : Managers.Player.PlayerStats.accelAmount;
+        accelRateY = (Mathf.Abs(targetSpeedY) > 0.01f) ? Managers.Player.PlayerStats.accelAmount : Managers.Player.PlayerStats.accelAmount;
 
-        if (PlayerManager.PlayerStats.doConserveMomentum && Mathf.Abs(rb.linearVelocityX) > Mathf.Abs(targetSpeedX) && Mathf.Sign(rb.linearVelocityX) == Mathf.Sign(targetSpeedX) && Mathf.Abs(targetSpeedX) > 0.01f)
+        if (Managers.Player.PlayerStats.doConserveMomentum && Mathf.Abs(rb.linearVelocityX) > Mathf.Abs(targetSpeedX) && Mathf.Sign(rb.linearVelocityX) == Mathf.Sign(targetSpeedX) && Mathf.Abs(targetSpeedX) > 0.01f)
         {
             accelRateX = 0;
         }
 
-        if (PlayerManager.PlayerStats.doConserveMomentum && Mathf.Abs(rb.linearVelocityY) > Mathf.Abs(targetSpeedY) && Mathf.Sign(rb.linearVelocityY) == Mathf.Sign(targetSpeedY) && Mathf.Abs(targetSpeedY) > 0.01f)
+        if (Managers.Player.PlayerStats.doConserveMomentum && Mathf.Abs(rb.linearVelocityY) > Mathf.Abs(targetSpeedY) && Mathf.Sign(rb.linearVelocityY) == Mathf.Sign(targetSpeedY) && Mathf.Abs(targetSpeedY) > 0.01f)
         {
             accelRateY = 0;
         }
