@@ -18,7 +18,7 @@ public class CollectableItemController : MonoBehaviour
     }
 
     // upgrade() должен быть тут
-    public void Upgrade()
+    public void Upgrade(string upgradeStat)
     {
 
     }
@@ -39,7 +39,6 @@ public class CollectableItemController : MonoBehaviour
     }
 
     // для глубокой копии List'a
-
     public CollectableItemController Clone()
     {
         return new CollectableItemController {Data = Instantiate(this.Data)};

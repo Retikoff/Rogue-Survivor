@@ -130,21 +130,30 @@ public class UpgradeManager : MonoBehaviour, IGameManager
             GameObject newUpgradeSlot = Instantiate(upgradeSlot, upgradeGrid.transform);
             int index = i;
             //улучшить
-            newUpgradeSlot.transform.GetComponent<Button>().onClick.AddListener(() => UpgradeItem(upgradableItems[index]));
             newUpgradeSlot.transform.GetChild(0).GetComponent<Image>().sprite = upgradableItems[i].Data.sprite;
             newUpgradeSlot.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = upgradableItems[i].Data.itemName;
-            newUpgradeSlot.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = upgradableItems[i].Data.itemDescription;
+            if (upgradableItems[i].Data.level > 0)
+            {
+                // upgrade stat
+                string upgradeStat = "";
+                newUpgradeSlot.transform.GetComponent<Button>().onClick.AddListener(() => UpgradeItem(upgradableItems[index], upgradeStat));
+            }
+            else
+            {
+                newUpgradeSlot.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = upgradableItems[i].Data.itemDescription;
+                newUpgradeSlot.transform.GetComponent<Button>().onClick.AddListener(() => UpgradeItem(upgradableItems[index]));
+            }
         }
 
 
         upgradeView.SetActive(true);
     }
 
-    public void UpgradeItem(CollectableItemController item)
+    public void UpgradeItem(CollectableItemController item, string upgradeStat = "")
     {
         Debug.Log("weapon to upgrade: " + item.Data.itemName);
 
-        item.Upgrade();
+        item.Upgrade(upgradeStat);
 
         ResumeGame();
     }
