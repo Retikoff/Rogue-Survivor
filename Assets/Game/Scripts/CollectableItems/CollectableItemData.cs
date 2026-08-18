@@ -11,6 +11,7 @@ public class CollectableItemData : ScriptableObject
 
     #region Weapon
     [ConditionalField("type", ItemType.Weapon)] public WeaponData weaponData;
+    // string не нравицца
     [ConditionalField("type", ItemType.Weapon)] public string weaponControllerName;
     #endregion
 
