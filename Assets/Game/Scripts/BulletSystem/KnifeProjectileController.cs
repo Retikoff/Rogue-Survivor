@@ -16,7 +16,7 @@ public class KnifeProjectileController : MonoBehaviour
 
     private void Update()
     {
-        if (timer > weaponController.Data.duration)
+        if (timer > weaponController.WeaponData.duration)
         {
             Destroy(this.gameObject);
         }
@@ -25,14 +25,14 @@ public class KnifeProjectileController : MonoBehaviour
 
     private void MoveStraight()
     {
-        rb.AddForce(weaponController.Data.speed * transform.right, ForceMode2D.Force);
+        rb.AddForce(weaponController.WeaponData.speed * transform.right, ForceMode2D.Force);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<EnemyManager>() != null)
         {
-            collision.gameObject.SendMessage("TakeDamage", weaponController.Data.baseDamage); // damager multiplier?
+            collision.gameObject.SendMessage("TakeDamage", weaponController.WeaponData.baseDamage); // damager multiplier?
         }
     }
 }

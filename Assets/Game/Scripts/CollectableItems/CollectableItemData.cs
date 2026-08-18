@@ -10,7 +10,8 @@ public class CollectableItemData : ScriptableObject
     public string itemName;
 
     #region Weapon
-    [ConditionalField("type", ItemType.Weapon)] public BulletSpawnerData weaponData;
+    [ConditionalField("type", ItemType.Weapon)] public WeaponData weaponData;
+    [ConditionalField("type", ItemType.Weapon)] public string weaponControllerName;
     #endregion
 
     #region Amplifier
@@ -30,4 +31,15 @@ public class CollectableItemData : ScriptableObject
     [ConditionalField("type", ItemType.Weapon, ItemType.Amplifier)] public String itemDescription;
 
     #endregion
+
+    public IWeapon CreateWeaponController(GameObject target)
+    {
+        if (string.IsNullOrEmpty(weaponControllerName))
+        {
+            return null;
+        }
+
+        Component component = target.AddComponent(Type.GetType(weaponControllerName));
+        return component as IWeapon;
+    }
 }

@@ -13,8 +13,11 @@ public class CollectableItemController : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Managers.Inventory.CollectItem(this);
-        Destroy(this.gameObject);
+        if (collision.GetComponent<PlayerManager>() != null)
+        {
+            Managers.Inventory.CollectItem(this);
+            Destroy(this.gameObject);
+        }
     }
 
     // upgrade() должен быть тут

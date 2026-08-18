@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Scriptable Objects/WeaponData")]
 public class WeaponData : ScriptableObject
 {
+    public GameObject projectile;
     public int maxLevel = 9;
     public float baseDamage = 1;
     public float area = 1;

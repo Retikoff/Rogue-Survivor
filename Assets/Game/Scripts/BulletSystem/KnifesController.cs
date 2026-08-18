@@ -1,21 +1,17 @@
+using System;
 using UnityEngine;
 
-public class KnifesController : MonoBehaviour
+[Serializable]
+public class KnifesController : MonoBehaviour, IWeapon
 {
-    [SerializeField] private WeaponData data;
-    [HideInInspector] public WeaponData Data;
-    [SerializeField] private GameObject projectilePrefab;
+    [HideInInspector] public WeaponData WeaponData{ get; set;}
 
     private float timer;
 
-    private void Awake()
-    {
-        Data = Instantiate(data);
-    }
 
     private void Update()
     {
-        if (timer > Data.cooldown)
+        if (timer > WeaponData.cooldown)
         {
             ShootProjectile();
             timer = 0f;
@@ -26,8 +22,8 @@ public class KnifesController : MonoBehaviour
 
     private void ShootProjectile()
     {
-        GameObject newProjectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        newProjectile.transform.localScale = new Vector3(Data.area, Data.area, Data.area);
+        GameObject newProjectile = Instantiate(WeaponData.projectile, transform.position, transform.rotation);
+        newProjectile.transform.localScale = new Vector3(WeaponData.area, WeaponData.area, WeaponData.area);
         newProjectile.GetComponent<KnifeProjectileController>().weaponController = this;
     }
 }

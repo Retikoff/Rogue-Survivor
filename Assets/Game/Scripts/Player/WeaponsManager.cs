@@ -21,16 +21,6 @@ public class WeaponsManager : MonoBehaviour, IGameManager
         moveAction = InputSystem.actions.FindAction("Move");
     }
 
-    private void Start()
-    {
-        for (int i = 0; i < Managers.Player.PlayerStats.maxWeaponNum; i++)
-        {
-            GameObject newSlot = new GameObject("Weapon Slot " + i, typeof(BulletSpawnerController));
-            newSlot.transform.SetParent(this.transform);
-            slots.Add(newSlot);
-        }
-    }
-
     public void Startup()
     {
         Debug.Log("Weapons manager starting...");
@@ -40,9 +30,9 @@ public class WeaponsManager : MonoBehaviour, IGameManager
 
     public void ApplyItem(CollectableItemController item)
     {
-        // if currenWeaponSlot > slots.Count
-        slots[CurrentWeaponSlot].GetComponent<BulletSpawnerController>().Data = item.Data.weaponData; //боже что это (я плохо поспал когда писал это)
-        items.Add(item);
+        AddSlot();
+        IWeapon weaponController = item.Data.CreateWeaponController(slots[CurrentWeaponSlot]);
+        weaponController.WeaponData = item.Data.weaponData;
         CurrentWeaponSlot++;
     }
 
@@ -58,5 +48,14 @@ public class WeaponsManager : MonoBehaviour, IGameManager
                 slot.transform.eulerAngles = new Vector3(0f,0f, rotationValue);
             }
         }
+    }
+
+    private void AddSlot()
+    {
+        GameObject newSlot = new GameObject("Weapon Slot " + CurrentWeaponSlot);
+        newSlot.transform.position = transform.position;
+        newSlot.transform.rotation = transform.rotation;
+        newSlot.transform.SetParent(this.transform);
+        slots.Add(newSlot);
     }
 }
