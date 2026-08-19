@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f995af37d233b4aa85a1bb5fa74c28, type: 3}
   m_Name: KnifeData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  projectile: {fileID: 6141644814765377801, guid: 26bb7cd6e8599c446a3db687dea71cdb, type: 3}
   maxLevel: 0
   baseDamage: 10
   area: 0.2

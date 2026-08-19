@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: KnifeCollectable
   m_EditorClassIdentifier: Assembly-CSharp::CollectableItemData
   type: 0
-  sprite: {fileID: 0}
-  itemName: 
-  weaponData: {fileID: 0}
+  sprite: {fileID: 6764707825347140516, guid: c17c0058c3867cd4faa8c374f47caa40, type: 3}
+  itemName: Knife
+  weaponData: {fileID: 11400000, guid: d60db359ac57eda4ca8e7150722976b3, type: 2}
+  weaponControllerName: KnifesController
   playerStat: 0
   ampValue: 0
   expValue: 0
   progression: {fileID: 0}
   level: 0
-  itemDescription: 
+  itemDescription: Strikes out multiple knifes
