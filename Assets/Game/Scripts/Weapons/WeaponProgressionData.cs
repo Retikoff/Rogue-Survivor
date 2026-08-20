@@ -31,6 +31,16 @@ public class WeaponProgressionData : ScriptableObject
         return row.Pairs[colIndex];
     }
 
+    public WeaponStatValueRow GetRow(int rowIndex)
+    {
+        if (rowIndex < 0 || rowIndex >= rows.Count)
+        {
+            return null;
+        }
+
+        return rows[rowIndex];
+    }
+
     public void SetValue(int rowIndex, WeaponStats stat, float value)
     {
         if (rowIndex < 0) return;

@@ -12,6 +12,14 @@ public class UpgradeManager : MonoBehaviour, IGameManager
     private GameObject upgradeGrid;
     [SerializeField] private GameObject upgradeSlot;
     private List<CollectableItemController> upgradableItems = new();
+    private int currentWeaponsNum;
+    private int maxWeaponsNum;
+    private List<CollectableItemController> weaponsToUpgrade = new();
+    private List<CollectableItemController> accessibleWeapons = new();
+    private int currentAmplifiersNum;
+    private int maxAmplifiersNum;
+    private List<CollectableItemController> amplifiersToUpgrade = new();
+    private List<CollectableItemController> accessibleAmplifiers = new();
 
     private void Start()
     {
@@ -35,19 +43,19 @@ public class UpgradeManager : MonoBehaviour, IGameManager
 
         // что улучшать/добавлять
 
-        int currentWeaponsNum = Managers.Weapons.GetItemsCount();
-        int maxWeaponNum = Managers.Player.PlayerStats.maxWeaponNum;
-        List<CollectableItemController> weaponsToUpgrade = Managers.Weapons.GetItems();
-        List<CollectableItemController> accessibleWeapons = Managers.GameRules.Data.accessableWeapons.Select(w => w.Clone()).ToList(); // deep copy
-
-        int currentAmplifiersNum = Managers.Amplifiers.GetItemsCount();
-        int maxAmplifiersNum = Managers.Player.PlayerStats.maxAmplifiersNum;
-        List<CollectableItemController> amplifiersToUpgrade = Managers.Amplifiers.GetItems();
-        List<CollectableItemController> accessibleAmplifiers = Managers.GameRules.Data.accessableAmplifiers.Select(w => w.Clone()).ToList(); // deep copy
+        GetWeaponsToUpgradeAndAccessible();
+        GetAmplifiersToUpgradeAndAccessible();
 
         //
         // gold if weaponsToUpgrade.Count == 0 && amplifiersToUpgrade.Count == 0
         //
+
+        ///
+        /// 
+        /// 
+        /// УСЛОВИЕ ЧТО amplifier НЕ МАКСИМАЛЬНОГО УРОВНЯ (в функциях Get...TOUpgradAnd...)
+        /// 
+        /// 
         while (upgradableItems.Count < 3)
         {
             if (UnityEngine.Random.Range(0,100) > 50)
@@ -56,34 +64,22 @@ public class UpgradeManager : MonoBehaviour, IGameManager
 
                 if (currentWeaponsNum == 0)
                 {
-                    // take from accessible
-                    CollectableItemController weaponToUpgrade = accessibleWeapons[UnityEngine.Random.Range(0, accessibleWeapons.Count)];
-                    accessibleWeapons.Remove(weaponToUpgrade);
-                    upgradableItems.Add(weaponToUpgrade);
+                    TakeWeaponFromAccessible();
                 }
-                else if (currentWeaponsNum > 0 && currentWeaponsNum < maxWeaponNum && weaponsToUpgrade.Count > 0)
+                else if (currentWeaponsNum > 0 && currentWeaponsNum < maxWeaponsNum && weaponsToUpgrade.Count > 0)
                 {
                     if (UnityEngine.Random.Range(0, 100) > 60)
                     {
-                        // upgrade existing
-                        CollectableItemController weaponToUpgrade = weaponsToUpgrade[UnityEngine.Random.Range(0, weaponsToUpgrade.Count)];
-                        weaponsToUpgrade.Remove(weaponToUpgrade);
-                        upgradableItems.Add(weaponToUpgrade);
+                        TakeWeaponForUpgrade();
                     }
                     else
                     {
-                        // take from accesible
-                        CollectableItemController weaponToUpgrade = accessibleWeapons[UnityEngine.Random.Range(0, accessibleWeapons.Count)];
-                        accessibleWeapons.Remove(weaponToUpgrade);
-                        upgradableItems.Add(weaponToUpgrade);
+                        TakeWeaponFromAccessible();
                     }
                 }
-                else if (currentWeaponsNum >= maxWeaponNum && weaponsToUpgrade.Count > 0)
+                else if (currentWeaponsNum >= maxWeaponsNum && weaponsToUpgrade.Count > 0)
                 {
-                    // upgrade existing
-                    CollectableItemController weaponToUpgrade = weaponsToUpgrade[UnityEngine.Random.Range(0, weaponsToUpgrade.Count)];
-                    weaponsToUpgrade.Remove(weaponToUpgrade);
-                    upgradableItems.Add(weaponToUpgrade);
+                    TakeWeaponForUpgrade();
                 }
             }
             else
@@ -92,34 +88,22 @@ public class UpgradeManager : MonoBehaviour, IGameManager
     
                 if (currentAmplifiersNum == 0)
                 {
-                    // take from accesible
-                    CollectableItemController amplifierToUpgrade = accessibleAmplifiers[UnityEngine.Random.Range(0, accessibleAmplifiers.Count)];
-                    accessibleAmplifiers.Remove(amplifierToUpgrade);
-                    upgradableItems.Add(amplifierToUpgrade);
+                    TakeAmplifierFromAccessible();
                 }
                 else if (currentAmplifiersNum > 0 && currentAmplifiersNum < maxAmplifiersNum && amplifiersToUpgrade.Count > 0)
                 {
                     if (UnityEngine.Random.Range(0, 100) > 60)
                     {
-                        // upgrade existing
-                        CollectableItemController amplifierToUpgrade = amplifiersToUpgrade[UnityEngine.Random.Range(0, amplifiersToUpgrade.Count)];
-                        amplifiersToUpgrade.Remove(amplifierToUpgrade);
-                        upgradableItems.Add(amplifierToUpgrade);
+                        TakeAmplifierForUpgrade();
                     }
                     else
                     {
-                        //take from accesible
-                        CollectableItemController amplifierToUpgrade = accessibleAmplifiers[UnityEngine.Random.Range(0, accessibleAmplifiers.Count)];
-                        accessibleAmplifiers.Remove(amplifierToUpgrade);
-                        upgradableItems.Add(amplifierToUpgrade);
+                        TakeAmplifierFromAccessible();
                     }
                 }
                 else if (currentAmplifiersNum >= maxAmplifiersNum && amplifiersToUpgrade.Count > 0)
                 {
-                    // upgrade existing
-                    CollectableItemController amplifierToUpgrade = amplifiersToUpgrade[UnityEngine.Random.Range(0, amplifiersToUpgrade.Count)];
-                    amplifiersToUpgrade.Remove(amplifierToUpgrade);
-                    upgradableItems.Add(amplifierToUpgrade);
+                    TakeAmplifierForUpgrade();
                 }
             }
         }
@@ -135,27 +119,47 @@ public class UpgradeManager : MonoBehaviour, IGameManager
             if (upgradableItems[i].Data.level > 0)
             {
                 // upgrade stat
-                string upgradeStat = "";
-                newUpgradeSlot.transform.GetComponent<Button>().onClick.AddListener(() => UpgradeItem(upgradableItems[index], upgradeStat));
+                if (upgradableItems[i].Data.type == ItemType.Weapon)
+                {
+                    WeaponStatValueRow levelRow = upgradableItems[i].Data.weaponProgression.GetRow(upgradableItems[i].Data.level + 1);
+                    WeaponStatValuePair levelUpgrade = levelRow.Pairs[UnityEngine.Random.Range(0, levelRow.Pairs.Count)];
+                    newUpgradeSlot.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = $"{levelUpgrade.Stat.ToString()}: {levelUpgrade.Value.ToString()}";
+                    newUpgradeSlot.transform.GetComponent<Button>().onClick.AddListener(() => UpgradeItem(upgradableItems[index], levelUpgrade));
+                }
+
+                if (upgradableItems[i].Data.type == ItemType.Amplifier)
+                {
+
+                }
             }
             else
             {
                 newUpgradeSlot.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = upgradableItems[i].Data.itemDescription;
-                newUpgradeSlot.transform.GetComponent<Button>().onClick.AddListener(() => UpgradeItem(upgradableItems[index]));
+                newUpgradeSlot.transform.GetComponent<Button>().onClick.AddListener(() => AddItem(upgradableItems[index]));
             }
         }
-
 
         upgradeView.SetActive(true);
     }
 
-    public void UpgradeItem(CollectableItemController item, string upgradeStat = "")
+    public void UpgradeItem(CollectableItemController item, WeaponStatValuePair levelUpgrade)
     {
         Debug.Log("weapon to upgrade: " + item.Data.itemName);
 
-        item.Upgrade(upgradeStat);
+        item.Upgrade(levelUpgrade);
 
         ResumeGame();
+    }
+
+    // for amplifier    
+    public void UpgradeItem(CollectableItemController item)
+    {
+        
+    }
+
+    public void AddItem(CollectableItemController item)
+    {
+        Managers.Inventory.CollectItem(item);
     }
 
     private void ResumeGame()
@@ -167,5 +171,56 @@ public class UpgradeManager : MonoBehaviour, IGameManager
         }
 
         Time.timeScale = 1f;
+    }
+
+    private void GetWeaponsToUpgradeAndAccessible()
+    {
+        currentWeaponsNum = Managers.Weapons.GetItemsCount();
+        maxWeaponsNum = Managers.Player.PlayerStats.maxWeaponNum;
+        weaponsToUpgrade = Managers.Weapons.GetItems();
+        foreach (CollectableItemController weapon in weaponsToUpgrade)
+        {
+            if (weapon.Data.level >= weapon.Data.weaponData.maxLevel)
+            {
+                weaponsToUpgrade.Remove(weapon);
+            }
+        }
+        accessibleWeapons = Managers.GameRules.Data.accessableWeapons.Select(w => w.Clone()).ToList(); // deep copy
+    }
+
+    private void GetAmplifiersToUpgradeAndAccessible()
+    {
+        currentAmplifiersNum = Managers.Amplifiers.GetItemsCount();
+        maxAmplifiersNum = Managers.Player.PlayerStats.maxAmplifiersNum;
+        amplifiersToUpgrade = Managers.Amplifiers.GetItems();
+        accessibleAmplifiers = Managers.GameRules.Data.accessableAmplifiers.Select(w => w.Clone()).ToList(); // deep copy
+    }
+
+    private void TakeWeaponFromAccessible()
+    {
+        CollectableItemController weaponToUpgrade = accessibleWeapons[UnityEngine.Random.Range(0, accessibleWeapons.Count)];
+        accessibleWeapons.Remove(weaponToUpgrade);
+        upgradableItems.Add(weaponToUpgrade);
+    }
+
+    private void TakeWeaponForUpgrade()
+    {
+        CollectableItemController weaponToUpgrade = weaponsToUpgrade[UnityEngine.Random.Range(0, weaponsToUpgrade.Count)];
+        weaponsToUpgrade.Remove(weaponToUpgrade);
+        upgradableItems.Add(weaponToUpgrade);
+    }
+
+    private void TakeAmplifierFromAccessible()
+    {
+        CollectableItemController amplifierToUpgrade = accessibleAmplifiers[UnityEngine.Random.Range(0, accessibleAmplifiers.Count)];
+        accessibleAmplifiers.Remove(amplifierToUpgrade);
+        upgradableItems.Add(amplifierToUpgrade);
+    }
+
+    private void TakeAmplifierForUpgrade()
+    {
+        CollectableItemController amplifierToUpgrade = amplifiersToUpgrade[UnityEngine.Random.Range(0, amplifiersToUpgrade.Count)];
+        amplifiersToUpgrade.Remove(amplifierToUpgrade);
+        upgradableItems.Add(amplifierToUpgrade);
     }
 }

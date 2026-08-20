@@ -27,7 +27,7 @@ public class CollectableItemData : ScriptableObject
 
     #region Weapon and Amplifier
 
-    [ConditionalField("type", ItemType.Weapon, ItemType.Amplifier)] public WeaponProgressionData progression;
+    [ConditionalField("type", ItemType.Weapon, ItemType.Amplifier)] public WeaponProgressionData weaponProgression;
     /*
     usage: some cs script: 
     WeaponStatValuePair upgradePair = progresion.GetValue(0, 0);

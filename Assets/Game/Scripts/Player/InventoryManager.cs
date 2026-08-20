@@ -30,6 +30,8 @@ public class InventoryManager : MonoBehaviour, IGameManager
 
     private void ApplyItem(CollectableItemController item)
     {
+        item.Data.level = 1;
+
         if (item.Data.type == ItemType.Weapon)
         {
             Managers.Weapons.ApplyItem(item);
