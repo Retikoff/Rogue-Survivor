@@ -13,11 +13,15 @@ public class CollectableItemData : ScriptableObject
     [ConditionalField("type", ItemType.Weapon)] public WeaponData weaponData;
     // string не нравицца
     [ConditionalField("type", ItemType.Weapon)] public string weaponControllerName;
+    [ConditionalField("type", ItemType.Weapon)] public WeaponProgressionData weaponProgression;
+    /*
+    usage: some cs script: 
+    WeaponStatValuePair upgradePair = progresion.GetValue(0, 0);
+    */
     #endregion
 
     #region Amplifier
-    [ConditionalField("type", ItemType.Amplifier)] public PlayerStats playerStat;
-    [ConditionalField("type", ItemType.Amplifier)] public float ampValue;
+    [ConditionalField("type", ItemType.Amplifier)] public AmplifierData amplifierData;
     
     #endregion
 
@@ -27,12 +31,6 @@ public class CollectableItemData : ScriptableObject
 
     #region Weapon and Amplifier
 
-    [ConditionalField("type", ItemType.Weapon, ItemType.Amplifier)] public WeaponProgressionData weaponProgression;
-    /*
-    usage: some cs script: 
-    WeaponStatValuePair upgradePair = progresion.GetValue(0, 0);
-
-    */
     [HideInInspector] public int level = 0;
     [ConditionalField("type", ItemType.Weapon, ItemType.Amplifier)] public String itemDescription;
 

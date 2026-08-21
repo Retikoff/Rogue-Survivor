@@ -60,6 +60,15 @@ public class CollectableItemController : MonoBehaviour
                 Data.weaponData.blockByWalls = levelUpgrade.Value > 0;
                 break;
         }
+
+        Data.level += 1;
+    }
+
+    public void Upgrade()
+    {
+        // some stats might need -=
+        Data.amplifierData.baseValue += Data.amplifierData.levelUpgrades[Data.level + 1];
+        Data.level += 1;
     }
 
     // для List.Remove() в GameRules

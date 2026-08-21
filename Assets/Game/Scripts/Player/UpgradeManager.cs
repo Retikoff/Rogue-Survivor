@@ -39,8 +39,7 @@ public class UpgradeManager : MonoBehaviour, IGameManager
     public void Upgrade()
     {
         //остановить игру
-        Time.timeScale = 0f;
-
+        StopGame();
         // что улучшать/добавлять
 
         GetWeaponsToUpgradeAndAccessible();
@@ -50,12 +49,7 @@ public class UpgradeManager : MonoBehaviour, IGameManager
         // gold if weaponsToUpgrade.Count == 0 && amplifiersToUpgrade.Count == 0
         //
 
-        ///
-        /// 
-        /// 
-        /// УСЛОВИЕ ЧТО amplifier НЕ МАКСИМАЛЬНОГО УРОВНЯ (в функциях Get...TOUpgradAnd...)
-        /// 
-        /// 
+        
         while (upgradableItems.Count < 3)
         {
             if (UnityEngine.Random.Range(0,100) > 50)
@@ -129,7 +123,9 @@ public class UpgradeManager : MonoBehaviour, IGameManager
 
                 if (upgradableItems[i].Data.type == ItemType.Amplifier)
                 {
-
+                    float levelUpgrade = upgradableItems[i].Data.amplifierData.levelUpgrades[upgradableItems[i].Data.level + 1];
+                    newUpgradeSlot.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = $"{upgradableItems[i].Data.amplifierData.playerStat}: {levelUpgrade}";
+                    newUpgradeSlot.transform.GetComponent<Button>().onClick.AddListener(() => UpgradeItem(upgradableItems[index]));
                 }
             }
             else
@@ -151,15 +147,33 @@ public class UpgradeManager : MonoBehaviour, IGameManager
         ResumeGame();
     }
 
-    // for amplifier    
     public void UpgradeItem(CollectableItemController item)
     {
-        
+        Debug.Log("Amplifier to upgrade: " + item.Data.itemName);
+
+        item.Upgrade();
+
+        ResumeGame();
     }
 
     public void AddItem(CollectableItemController item)
     {
         Managers.Inventory.CollectItem(item);
+
+        if (item.Data.type == ItemType.Weapon)
+        {
+            Managers.GameRules.Data.accessableWeapons.Remove(item);
+        }
+
+        if (item.Data.type == ItemType.Amplifier)
+        {
+            Managers.GameRules.Data.accessableAmplifiers.Remove(item);
+        }
+    }
+
+    private void StopGame()
+    {
+        Time.timeScale = 0f;
     }
 
     private void ResumeGame()
@@ -193,6 +207,13 @@ public class UpgradeManager : MonoBehaviour, IGameManager
         currentAmplifiersNum = Managers.Amplifiers.GetItemsCount();
         maxAmplifiersNum = Managers.Player.PlayerStats.maxAmplifiersNum;
         amplifiersToUpgrade = Managers.Amplifiers.GetItems();
+        foreach (CollectableItemController amplifier in amplifiersToUpgrade)
+        {
+            if (amplifier.Data.level >= amplifier.Data.amplifierData.maxLevel)
+            {
+                amplifiersToUpgrade.Remove(amplifier);
+            }
+        }
         accessibleAmplifiers = Managers.GameRules.Data.accessableAmplifiers.Select(w => w.Clone()).ToList(); // deep copy
     }
 
