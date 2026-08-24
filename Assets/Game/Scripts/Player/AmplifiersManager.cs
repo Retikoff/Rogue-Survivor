@@ -27,13 +27,13 @@ public class AmplifiersManager : MonoBehaviour, IGameManager
 
     private void ApplyToPlayer(CollectableItemController item)
     {
-        switch (item.Data.playerStat)
+        switch (item.Data.amplifierData.playerStat)
         {
             case PlayerStats.Health:
-                Managers.Player.PlayerStats.HealthAmplifier = item.Data.ampValue;
+                Managers.Player.PlayerStats.HealthAmplifier = item.Data.amplifierData.baseValue;
                 break;
             case PlayerStats.Speed:
-                Managers.Player.PlayerStats.speedAmplifier = item.Data.ampValue;
+                Managers.Player.PlayerStats.speedAmplifier = item.Data.amplifierData.baseValue;
                 break;
             
         }
