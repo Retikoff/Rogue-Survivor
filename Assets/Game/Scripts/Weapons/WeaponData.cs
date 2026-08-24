@@ -10,10 +10,10 @@ public class WeaponData : ScriptableObject
     public float speed = 50;
     public float projectileAmount = 1;
     public float duration = 1;
-    public int pierce = 0; // пробивание
+    public int pierce = 0; // пробивание (число врагов)
     public float cooldown;
     public float knockback; // сила отталкивания
     public float critMulti;
     public float critChance;
-    public bool blockByWalls;
+    //public bool blockByWalls;
 }

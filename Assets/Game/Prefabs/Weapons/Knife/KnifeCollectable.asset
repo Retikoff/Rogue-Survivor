@@ -17,9 +17,8 @@ MonoBehaviour:
   itemName: Knife
   weaponData: {fileID: 11400000, guid: d60db359ac57eda4ca8e7150722976b3, type: 2}
   weaponControllerName: KnifesController
-  playerStat: 0
-  ampValue: 0
+  weaponProgression: {fileID: 11400000, guid: 3de55ac32cd92694f995b0b34508658e, type: 2}
+  amplifierData: {fileID: 0}
   expValue: 0
-  progression: {fileID: 0}
   level: 0
   itemDescription: Strikes out multiple knifes

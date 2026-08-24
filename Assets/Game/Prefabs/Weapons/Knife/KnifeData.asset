@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: KnifeData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectile: {fileID: 6141644814765377801, guid: 26bb7cd6e8599c446a3db687dea71cdb, type: 3}
-  maxLevel: 0
-  baseDamage: 10
+  maxLevel: 9
+  baseDamage: 1
   area: 0.2
-  speed: 200
-  projectileAmount: 0
-  duration: 10
-  pierce: 0
+  speed: 380
+  projectileAmount: 2
+  duration: 3
+  pierce: 1
   cooldown: 2
-  knockback: 0
-  critMulti: 0
-  critChance: 0
+  knockback: 20
+  critMulti: 5
+  critChance: 10
   blockByWalls: 0

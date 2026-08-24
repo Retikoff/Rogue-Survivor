@@ -12,4 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7a9be4f441364a83e5af3f2e14156, type: 3}
   m_Name: KnifeProgressionData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponProgressionData
-  rows: []
+  rows:
+  - Pairs: []
+  - Pairs:
+    - Stat: 0
+      Value: 10
+    - Stat: 2
+      Value: 200
+    - Stat: 1
+      Value: 0.2
+  - Pairs: []
+  - Pairs: []
+  - Pairs: []
+  - Pairs: []
+  - Pairs: []
+  - Pairs: []
+  - Pairs: []

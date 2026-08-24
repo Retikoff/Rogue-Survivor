@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276d6550def256c4d90d6ef35d704bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectableItemController
+  data: {fileID: 11400000, guid: d0505bb5c17a4e2428e9281ed564534e, type: 2}
   Data: {fileID: 11400000, guid: d0505bb5c17a4e2428e9281ed564534e, type: 2}
 --- !u!58 &1060675443369118238
 CircleCollider2D:
