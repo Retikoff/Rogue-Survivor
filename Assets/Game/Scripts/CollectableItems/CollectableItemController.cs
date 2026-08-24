@@ -56,9 +56,9 @@ public class CollectableItemController : MonoBehaviour
             case WeaponStats.CritChance:
                 Data.weaponData.critChance += levelUpgrade.Value;
                 break;
-            case WeaponStats.BlockByWalls:
-                Data.weaponData.blockByWalls = levelUpgrade.Value > 0;
-                break;
+            //case WeaponStats.BlockByWalls:
+            //    Data.weaponData.blockByWalls = levelUpgrade.Value > 0;
+            //    break;
         }
 
         Data.level += 1;

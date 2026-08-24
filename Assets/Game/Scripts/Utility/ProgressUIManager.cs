@@ -5,11 +5,10 @@ public class ProgressUIManager : MonoBehaviour
 {
     [SerializeField] private Slider slider;
 
-    private void Awake()
+    private void Start()
     {
-        PlayerExperienceController expController = GameObject.Find("Player").GetComponent<PlayerExperienceController>();
-        expController.OnCurrentExpChanged += SetValue;
-        expController.OnCurrentExpToProgressChanged += SetMaxValue;
+        Managers.ExperienceManager.OnCurrentExpChanged += SetValue;
+        Managers.ExperienceManager.OnCurrentExpToProgressChanged += SetMaxValue;
     }
     public void SetValue(float value)
     {

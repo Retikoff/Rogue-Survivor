@@ -15,6 +15,7 @@ public class Managers : MonoBehaviour
     public static UpgradeManager Upgrade {get; private set;}
     public static WeaponsManager Weapons {get; private set;}
     public static AmplifiersManager Amplifiers {get; private set;}
+    public static PlayerExperienceManager ExperienceManager {get; private set;}
 
     private List<IGameManager> startSequence;
 
@@ -26,6 +27,7 @@ public class Managers : MonoBehaviour
         Upgrade = GetComponent<UpgradeManager>();
         Weapons = GetComponent<WeaponsManager>();
         Amplifiers = GetComponent<AmplifiersManager>();
+        ExperienceManager = GetComponent<PlayerExperienceManager>();
 
         startSequence = new List<IGameManager>();
         startSequence.Add(Player);
@@ -34,6 +36,7 @@ public class Managers : MonoBehaviour
         startSequence.Add(Upgrade);
         startSequence.Add(Weapons);
         startSequence.Add(Amplifiers);
+        startSequence.Add(ExperienceManager);
 
         StartCoroutine(StartupManagers());
     }

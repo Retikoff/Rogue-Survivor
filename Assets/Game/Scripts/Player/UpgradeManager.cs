@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(PlayerExperienceController))]
 public class UpgradeManager : MonoBehaviour, IGameManager
 {
     public ManagerStatus status {get; private set;}
@@ -25,7 +24,7 @@ public class UpgradeManager : MonoBehaviour, IGameManager
     {
         upgradeView = GameObject.Find("InventoryProgressCanvas").transform.Find("UpgradeView").gameObject;
         upgradeGrid = upgradeView.transform.GetChild(0).gameObject;
-        GetComponent<PlayerExperienceController>().OnPlayerLevelUped += Upgrade;
+        Managers.ExperienceManager.OnPlayerLevelUped += Upgrade;
     }
 
     public void Startup()

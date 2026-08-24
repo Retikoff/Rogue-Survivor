@@ -25,10 +25,6 @@ public class CollectableItemData : ScriptableObject
     
     #endregion
 
-    #region ExpShard
-    [ConditionalField("type", ItemType.ExpShard)] public float expValue;
-    #endregion
-
     #region Weapon and Amplifier
 
     [HideInInspector] public int level = 0;

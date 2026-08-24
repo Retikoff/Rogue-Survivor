@@ -1,9 +1,8 @@
 using System;
-using Unity.Profiling;
-using UnityEditor.Rendering.Universal;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class PlayerExperienceController : MonoBehaviour
+public class PlayerExperienceManager : MonoBehaviour, IGameManager
 {
     private int currentLvl;
     public event Action OnPlayerLevelUped;
@@ -41,11 +40,20 @@ public class PlayerExperienceController : MonoBehaviour
         }
     }
 
+    public ManagerStatus status {get; private set;}
+
     private void Start()
     {
         currentLvl = 1;
         CurrentExp = 0f;
         CurrentExpToProgress = 5f;
+    }
+
+    public void Startup()
+    {
+        Debug.Log("Experience manager starting...");
+
+        status = ManagerStatus.Started;
     }
 
     public void GetExp(float value)

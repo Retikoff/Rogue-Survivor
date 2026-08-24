@@ -13,5 +13,5 @@ public enum WeaponStats
     Knockback,
     CritMulti,
     CritChance,
-    BlockByWalls
+    //BlockByWalls
 }
