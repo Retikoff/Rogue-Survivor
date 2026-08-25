@@ -15,5 +15,6 @@ public class WeaponData : ScriptableObject
     public float knockback; // сила отталкивания
     public float critMulti;
     public float critChance;
+    public bool isRotatable = true;
     //public bool blockByWalls;
 }

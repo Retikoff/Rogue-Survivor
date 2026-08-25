@@ -33,6 +33,7 @@ public class WeaponsManager : MonoBehaviour, IGameManager
         AddSlot();
         IWeapon weaponController = item.Data.CreateWeaponController(slots[CurrentWeaponSlot]);
         weaponController.WeaponData = item.Data.weaponData;
+        items.Add(item);
         CurrentWeaponSlot++;
     }
 
@@ -43,9 +44,12 @@ public class WeaponsManager : MonoBehaviour, IGameManager
             Vector2 moveValue = moveAction.ReadValue<Vector2>();
             float rotationValue = Vector2.SignedAngle(Vector2.right, moveValue);
 
-            foreach(var slot in slots)
+            for (int i = 0; i < slots.Count; i++)
             {
-                slot.transform.eulerAngles = new Vector3(0f,0f, rotationValue);
+                if (items[i].Data.weaponData.isRotatable)
+                {
+                    slots[i].transform.eulerAngles = new Vector3(0f,0f, rotationValue);
+                }
             }
         }
     }

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5582624272596261570}
   - component: {fileID: 6982269467966880704}
-  - component: {fileID: 7133297818126914245}
   - component: {fileID: 1060675443369118238}
+  - component: {fileID: -1857317652077470134}
   m_Layer: 0
   m_Name: ExpShardTest
   m_TagString: Untagged
@@ -93,20 +93,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &7133297818126914245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2323083859924306998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 276d6550def256c4d90d6ef35d704bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectableItemController
-  data: {fileID: 11400000, guid: d0505bb5c17a4e2428e9281ed564534e, type: 2}
-  Data: {fileID: 11400000, guid: d0505bb5c17a4e2428e9281ed564534e, type: 2}
 --- !u!58 &1060675443369118238
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -143,3 +129,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1
+--- !u!114 &-1857317652077470134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2323083859924306998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7af1d518c599f49ad4fc079f78a5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExpShardController
+  expValue: 3

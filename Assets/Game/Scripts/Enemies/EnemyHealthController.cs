@@ -20,6 +20,7 @@ public class EnemyHealthController : MonoBehaviour
     public void TakeDamage(float value)
     {
         currentHealth -= value;
+        Debug.Log("Took damage: " + value);
     }
 
     public void Death()
