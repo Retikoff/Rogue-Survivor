@@ -31,7 +31,7 @@ public class KnifesController : MonoBehaviour, IWeapon
             Vector3 newPosition = new Vector3(transform.position.x + UnityEngine.Random.Range(0, 0.5f) * X_OFFSET, transform.position.y + UnityEngine.Random.Range(-0.5f, 0.5f) * Y_OFFSET, transform.position.z);
             newProjectile.transform.position = newPosition;
             newProjectile.transform.localScale = new Vector3(WeaponData.area, WeaponData.area, WeaponData.area);
-            newProjectile.GetComponent<KnifeProjectileController>().weaponController = this;
+            newProjectile.GetComponent<KnifeProjectileController>().weaponData = WeaponData;
         }
     }
 }

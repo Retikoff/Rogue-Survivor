@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStatsTest
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatsData
   maxHealth: 100
-  damageResistance: 1
+  damageResistance: 0
   healthAmplifier: 1
   speedAmplifier: 1
   expAmplifier: 1

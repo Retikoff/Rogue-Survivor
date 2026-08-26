@@ -7,6 +7,6 @@ public class EnemyManager : MonoBehaviour
 
     private void Awake()
     {
-        EnemyStats = enemyStats;
+        EnemyStats = Instantiate(enemyStats);
     }
 }

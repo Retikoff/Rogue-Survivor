@@ -23,5 +23,5 @@ MonoBehaviour:
   cooldown: 2
   knockback: 0
   critMulti: 3
-  critChance: 10
+  critChance: 0
   isRotatable: 0
