@@ -46,7 +46,7 @@ public class AxeProjectileController : MonoBehaviour
                 dealDamage *= weaponData.critMulti;
             }
 
-            collision.gameObject.SendMessage("TakeDamage", dealDamage);
+            collision.SendMessage("TakeDamage", dealDamage);
 
             numGetThroughEnemies++;
             if (numGetThroughEnemies >= weaponData.pierce)

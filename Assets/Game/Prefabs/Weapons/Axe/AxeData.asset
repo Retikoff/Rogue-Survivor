@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f995af37d233b4aa85a1bb5fa74c28, type: 3}
   m_Name: AxeData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  projectile: {fileID: 0}
+  projectile: {fileID: 1487041059782568414, guid: 8f736f7584e03c04087c3a363b9c2c71, type: 3}
   maxLevel: 9
-  baseDamage: 1
-  area: 1
-  speed: 50
-  projectileAmount: 1
-  duration: 1
-  pierce: 0
-  cooldown: 0
-  knockback: 0
-  critMulti: 0
+  baseDamage: 3
+  area: 0.4
+  speed: 1
+  projectileAmount: 2
+  duration: 4
+  pierce: 2
+  cooldown: 2
+  knockback: 10
+  critMulti: 1
   critChance: 0
-  isRotatable: 1
+  isRotatable: 0

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: AxeCollectable
   m_EditorClassIdentifier: Assembly-CSharp::CollectableItemData
   type: 0
-  sprite: {fileID: 0}
-  itemName: 
-  weaponData: {fileID: 0}
-  weaponControllerName: 
-  weaponProgression: {fileID: 0}
+  sprite: {fileID: -5825250732961213246, guid: 9deecb51a7d1a7c47bc32f7e93677669, type: 3}
+  itemName: Axe
+  weaponData: {fileID: 11400000, guid: 75e920e9b17886d4797d5134a3610770, type: 2}
+  weaponControllerName: AxeController
+  weaponProgression: {fileID: 11400000, guid: b175a43c0951a7c4db068be7be40ad9f, type: 2}
   amplifierData: {fileID: 0}
   level: 0
-  itemDescription: 
+  itemDescription: Shoots out multiple massive axes

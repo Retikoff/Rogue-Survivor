@@ -45,7 +45,7 @@ public class KnifeProjectileController : MonoBehaviour
             {
                 dealDamage *= weaponData.critMulti;
             }
-            collision.gameObject.SendMessage("TakeDamage", dealDamage); // damager multiplier?
+            collision.SendMessage("TakeDamage", dealDamage); // damager multiplier?
 
             numGetThroughEnemies++;
             if (numGetThroughEnemies >= weaponData.pierce)
