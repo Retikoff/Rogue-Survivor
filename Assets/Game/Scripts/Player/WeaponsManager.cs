@@ -42,6 +42,7 @@ public class WeaponsManager : MonoBehaviour, IGameManager
         if (moveAction.WasPerformedThisFrame())
         {
             Vector2 moveValue = moveAction.ReadValue<Vector2>();
+            
             float rotationValue = Vector2.SignedAngle(Vector2.right, moveValue);
 
             for (int i = 0; i < slots.Count; i++)

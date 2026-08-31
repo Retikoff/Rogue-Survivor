@@ -4,7 +4,10 @@ using UnityEngine;
 public class WhipController : MonoBehaviour, IWeapon
 {
     [HideInInspector] public WeaponData WeaponData {get; set;}
-    private const float PLAYER_OFFSET_X = 1f;
+    private const float PLAYER_OFFSET_X = 2f;
+    private const float SCALE_RATIO= 0.5f;
+    private const float DELAY_BETWEEN_PROJECTILES = 0.15f;
+    private const float OFFSET_BETWEEN_PROJECTILES_Y = 0.15f;
 
     private float timer;
 
@@ -21,18 +24,27 @@ public class WhipController : MonoBehaviour, IWeapon
 
     private void ShootProjectiles()
     {
-        GameObject newProjectile = Instantiate(WeaponData.projectile, this.transform);
-        newProjectile.transform.position = new Vector3(transform.position.x + PLAYER_OFFSET_X, transform.position.y, transform.position.z);
+        for (int i = 0; i < WeaponData.projectileAmount; i++)
+        {
+            float isEvenCoeff = (i & 1) == 0 ? 1f : -1f;
+            GameObject newProjectile = Instantiate(WeaponData.projectile, this.transform);
+            newProjectile.transform.localPosition = new Vector3(isEvenCoeff * (transform.localPosition.x + PLAYER_OFFSET_X), transform.localPosition.y + OFFSET_BETWEEN_PROJECTILES_Y * i, transform.localPosition.z);
+            
+            newProjectile.transform.localScale = new Vector3(isEvenCoeff * SCALE_RATIO * WeaponData.area, SCALE_RATIO * WeaponData.area, SCALE_RATIO * WeaponData.area);
 
-        // rotate ?
-
-        newProjectile.GetComponent<WhipProjectileController>().weaponData = WeaponData;
-        SpriteRenderer projectileSpriteRenderer = newProjectile.GetComponent<SpriteRenderer>();
-        StartCoroutine(FadeInHoldOut(projectileSpriteRenderer, 0.1f, 0f, 0.4f));
+            SpriteRenderer projectileSpriteRenderer = newProjectile.GetComponent<SpriteRenderer>();
+            newProjectile.GetComponent<WhipProjectileController>().weaponData = WeaponData;
+            newProjectile.SetActive(false);
+            StartCoroutine(FadeInHoldOut(projectileSpriteRenderer, 0.15f, 0.05f, 0.15f, DELAY_BETWEEN_PROJECTILES * ( i / 2f)));
+        }
     }
 
-    private IEnumerator FadeInHoldOut(SpriteRenderer spriteRenderer, float fadeInDuration, float holdDuration, float fadeOutDuration)
+    private IEnumerator FadeInHoldOut(SpriteRenderer spriteRenderer, float fadeInDuration, float holdDuration, float fadeOutDuration, float delay)
     {
+        yield return new WaitForSeconds(delay);
+
+        spriteRenderer.gameObject.SetActive(true);
+
         Color color = spriteRenderer.color;
         float totalDuration = fadeInDuration + holdDuration + fadeOutDuration;
         float elapsed = 0f;
