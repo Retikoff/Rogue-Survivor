@@ -6,7 +6,6 @@ public class AmplifiersManager : MonoBehaviour, IGameManager
     private List<CollectableItemController> items = new();
     public List<CollectableItemController> GetItems() => items;
     public int GetItemsCount() => items.Count;
-    private int currentAmplifierSlot = 0;
     public int CurrentAmplifierSlot { get; private set; }
 
     public ManagerStatus status {get; private set;}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da692d5d4b80e4d489976c3913ab128c, type: 3}
-  m_Name: TestSpeedAmp
+  m_Name: SpeedAmpCollectable
   m_EditorClassIdentifier: Assembly-CSharp::CollectableItemData
   type: 1
   sprite: {fileID: -5444726827232956361, guid: 622e8be56f2ca4540b45e8dac0ec9e26, type: 3}
@@ -19,6 +19,5 @@ MonoBehaviour:
   weaponControllerName: 
   weaponProgression: {fileID: 0}
   amplifierData: {fileID: 11400000, guid: bde83c82188ae0e41820e1ae606898db, type: 2}
-  expValue: 0
   level: 0
-  itemDescription: 
+  itemDescription: Increases hero movement speed

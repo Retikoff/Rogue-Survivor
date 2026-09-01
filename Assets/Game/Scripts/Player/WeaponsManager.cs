@@ -9,7 +9,6 @@ public class WeaponsManager : MonoBehaviour, IGameManager
     private List<CollectableItemController> items = new();
     public List<CollectableItemController> GetItems() => items;
     public int GetItemsCount() => items.Count;
-    private int currentWeaponSlot = 0;
     public int CurrentWeaponSlot {get; private set;}
 
     private InputAction moveAction;

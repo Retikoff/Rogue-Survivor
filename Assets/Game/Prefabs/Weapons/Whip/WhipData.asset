@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectile: {fileID: 4468373501881153094, guid: ffac14315a14b3f478d66cbb70dd6b8b, type: 3}
   maxLevel: 9
-  baseDamage: 1
+  baseDamage: 2.3
   area: 1
-  speed: 50
-  projectileAmount: 1
-  duration: 1
+  speed: 0
+  projectileAmount: 3
+  duration: 0
   pierce: 0
   cooldown: 2
-  knockback: 0
-  critMulti: 0
-  critChance: 0
+  knockback: 10
+  critMulti: 1
+  critChance: 1
   isRotatable: 0
