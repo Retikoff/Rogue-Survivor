@@ -67,7 +67,7 @@ public class PlayerExperienceManager : MonoBehaviour, IGameManager
         }
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         CurrentLvl += 1;
 

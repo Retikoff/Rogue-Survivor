@@ -76,7 +76,7 @@ public class CollectableItemController : MonoBehaviour
     {
         if (obj is CollectableItemController other)
         {
-            return this.Data.itemName == other.Data.itemName;
+            return this.data.itemName == other.data.itemName;
         }
         return false;
     }
@@ -84,11 +84,5 @@ public class CollectableItemController : MonoBehaviour
     public override int GetHashCode()
     {
         return HashCode.Combine(Data.itemName);
-    }
-
-    // для глубокой копии List'a
-    public CollectableItemController Clone()
-    {
-        return new CollectableItemController {Data = Instantiate(this.Data)};
     }
 }

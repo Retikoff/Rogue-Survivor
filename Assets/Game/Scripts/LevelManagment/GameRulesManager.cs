@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameRulesManager : MonoBehaviour, IGameManager
 {
     [SerializeField] private GameRulesData gameRules;
-    public GameRulesData Data;
+    [HideInInspector] public GameRulesData Data;
     public ManagerStatus status {get; private set;}
 
     private void Awake()
@@ -22,12 +22,12 @@ public class GameRulesManager : MonoBehaviour, IGameManager
     {
         if (item.Data.type == ItemType.Weapon)
         {
-            Data.accessableWeapons.Remove(item);
+            Data.accessibleWeapons.Remove(item);
         }
 
         if (item.Data.type == ItemType.Amplifier)
         {
-            Data.accessableAmplifiers.Remove(item);
-        }
+            Data.accessibleAmplifiers.Remove(item);
+       }
     }
 }

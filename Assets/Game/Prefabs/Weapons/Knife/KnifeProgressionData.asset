@@ -21,7 +21,9 @@ MonoBehaviour:
       Value: 200
     - Stat: 1
       Value: 0.2
-  - Pairs: []
+  - Pairs:
+    - Stat: 3
+      Value: 1
   - Pairs: []
   - Pairs: []
   - Pairs: []

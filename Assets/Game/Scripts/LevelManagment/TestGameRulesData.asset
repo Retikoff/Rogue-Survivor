@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc7f0631bdf2174d8914f2bb95d23e1, type: 3}
   m_Name: TestGameRulesData
   m_EditorClassIdentifier: Assembly-CSharp::GameRulesData
-  accessableWeapons: []
-  accessableAmplifiers: []
-  maxWeaponsNum: 0
-  maxAmplifiersNum: 0
+  accessibleWeapons:
+  - {fileID: 1630979463393291776, guid: da36203db6314584288987c4042ffc1a, type: 3}
+  - {fileID: 6083095780633128338, guid: 2421a18b68a74ac4ea22d07a571ede85, type: 3}
+  - {fileID: 7499344758983633178, guid: e93d84d853563ed4bbb816433bd13910, type: 3}
+  - {fileID: 5573198269184640652, guid: 6a48fc3bf4b6ae84e877bb6d6c3e9c47, type: 3}
+  accessibleAmplifiers:
+  - {fileID: 5031887333682856691, guid: ce81367e8861e704fa34afa4448f645e, type: 3}
+  - {fileID: 5407753784929507888, guid: 213d344df2dabb0458dd68ef354e1fa1, type: 3}

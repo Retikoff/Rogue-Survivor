@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(UpgradeManager))]
 [RequireComponent(typeof(WeaponsManager))]
 [RequireComponent(typeof(AmplifiersManager))]
+[RequireComponent(typeof(PlayerExperienceManager))]
 public class Managers : MonoBehaviour
 {
     public static PlayerManager Player {get; private set;}
@@ -37,6 +38,7 @@ public class Managers : MonoBehaviour
         startSequence.Add(Weapons);
         startSequence.Add(Amplifiers);
         startSequence.Add(ExperienceManager);
+
 
         StartCoroutine(StartupManagers());
     }

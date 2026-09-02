@@ -12,4 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c7a9be4f441364a83e5af3f2e14156, type: 3}
   m_Name: GarlicProgressionData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponProgressionData
-  rows: []
+  rows:
+  - Pairs: []
+  - Pairs: []
+  - Pairs:
+    - Stat: 1
+      Value: 0.1
+  - Pairs: []
+  - Pairs: []
+  - Pairs: []
+  - Pairs: []
+  - Pairs: []
+  - Pairs: []

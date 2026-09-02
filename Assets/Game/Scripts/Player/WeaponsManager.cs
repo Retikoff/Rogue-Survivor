@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class WeaponsManager : MonoBehaviour, IGameManager
 {
     private List<GameObject> slots = new();
-    private List<CollectableItemController> items = new();
+    private List<CollectableItemController> items = new List<CollectableItemController>();
     public List<CollectableItemController> GetItems() => items;
     public int GetItemsCount() => items.Count;
     public int CurrentWeaponSlot {get; private set;}
@@ -38,7 +38,7 @@ public class WeaponsManager : MonoBehaviour, IGameManager
 
     public void Update()
     {
-        if (moveAction.WasPerformedThisFrame())
+        if (moveAction.WasPerformedThisFrame() && slots.Count == items.Count)
         {
             Vector2 moveValue = moveAction.ReadValue<Vector2>();
             

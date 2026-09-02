@@ -1,18 +1,21 @@
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DebugUIManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject grid;
+    [SerializeField]
+    private Button lvlUpButton;
     private TextMeshProUGUI speedField;
     private TextMeshProUGUI maxSpeedField;
     private TextMeshProUGUI curLvlField;
     private TextMeshProUGUI curExpField;
     private TextMeshProUGUI expToUpField;
     private TextMeshProUGUI numOfWeaponField;
-    private TextMeshProUGUI numOfAmpsField;
+    private TextMeshProUGUI numOfAccessibleWeaponsField;
     private Rigidbody2D playerRb;
 
     private void Start()
@@ -23,9 +26,11 @@ public class DebugUIManager : MonoBehaviour
         curExpField = grid.transform.GetChild(7).GetComponent<TextMeshProUGUI>();
         expToUpField = grid.transform.GetChild(9).GetComponent<TextMeshProUGUI>();
         numOfWeaponField = grid.transform.GetChild(11).GetComponent<TextMeshProUGUI>();
-        numOfAmpsField = grid.transform.GetChild(13).GetComponent<TextMeshProUGUI>();
+        numOfAccessibleWeaponsField = grid.transform.GetChild(13).GetComponent<TextMeshProUGUI>();
 
         playerRb = Managers.Player.gameObject.GetComponent<Rigidbody2D>();
+
+        lvlUpButton.onClick.AddListener(Managers.ExperienceManager.LevelUp);
     }
 
     private void Update()
@@ -42,6 +47,6 @@ public class DebugUIManager : MonoBehaviour
         expToUpField.text = Managers.ExperienceManager.CurrentExpToProgress.ToString();
 
         numOfWeaponField.text = Managers.Weapons.GetItemsCount().ToString();
-        numOfAmpsField.text = Managers.Amplifiers.GetItemsCount().ToString();
+        numOfAccessibleWeaponsField.text = Managers.GameRules.Data.accessibleWeapons.Count.ToString();
     }
 }
