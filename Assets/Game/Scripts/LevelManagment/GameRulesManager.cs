@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameRulesManager : MonoBehaviour, IGameManager
@@ -9,6 +10,27 @@ public class GameRulesManager : MonoBehaviour, IGameManager
     private void Awake()
     {
         Data = Instantiate(gameRules);
+        foreach (CollectableItemController controller in Data.accessibleWeapons)
+        {
+            controller.InitializeData();
+        }
+
+        foreach (CollectableItemController controller in Data.accessibleAmplifiers)
+        {
+            controller.InitializeData();
+        }
+    }
+
+    private void Start()
+    {
+        StartCoroutine(CheckAfterDelay());
+    }
+
+    private IEnumerator CheckAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        Debug.Log(Data.accessibleWeapons[0].Data);
+        Debug.Log(Data.accessibleWeapons[1].Data);
     }
 
     public void Startup()

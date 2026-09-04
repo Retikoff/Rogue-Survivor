@@ -667964,6 +667964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebugUIManager
   grid: {fileID: 749945678}
+  lvlUpButton: {fileID: 1627259782}
 --- !u!1 &2014876435
 GameObject:
   m_ObjectHideFlags: 0

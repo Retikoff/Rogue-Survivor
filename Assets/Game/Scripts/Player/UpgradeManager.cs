@@ -14,6 +14,10 @@ public class UpgradeManager : MonoBehaviour, IGameManager
     private int currentWeaponsNum;
     private int maxWeaponsNum;
     private List<CollectableItemController> weaponsToUpgrade = new();
+    private int countWeaponsToUpgrade = 0;
+    private int countNewWeapons = 0;
+    private int countAmplifiersToUpgrade = 0;
+    private int countNewAmplifiers = 0;
     private List<CollectableItemController> accessibleWeapons = new();
     private int currentAmplifiersNum;
     private int maxAmplifiersNum;
@@ -178,8 +182,6 @@ public class UpgradeManager : MonoBehaviour, IGameManager
 
 
         upgradableItems.Clear();
-        weaponsToUpgrade.Clear();
-        accessibleWeapons.Clear();
 
         Time.timeScale = 1f;
     }
@@ -204,18 +206,32 @@ public class UpgradeManager : MonoBehaviour, IGameManager
     private void TakeWeaponFromAccessible()
     {
         CollectableItemController newWeapon = accessibleWeapons[UnityEngine.Random.Range(0, accessibleWeapons.Count)];
-        while (upgradableItems.Contains(newWeapon))
+        
+        if (countNewWeapons < accessibleWeapons.Count)
         {
-            newWeapon = accessibleWeapons[UnityEngine.Random.Range(0, accessibleWeapons.Count)];
+            while (upgradableItems.Contains(newWeapon))
+            {
+                newWeapon = accessibleWeapons[UnityEngine.Random.Range(0, accessibleWeapons.Count)];
+            }
+            upgradableItems.Add(newWeapon);
+            countNewWeapons++;
         }
-        upgradableItems.Add(newWeapon);
     }
 
     private void TakeWeaponForUpgrade()
     {
         CollectableItemController weaponToUpgrade = weaponsToUpgrade[UnityEngine.Random.Range(0, weaponsToUpgrade.Count)];
-        weaponsToUpgrade.Remove(weaponToUpgrade); // ????????? я удаляю weapon из инвентаря
-        upgradableItems.Add(weaponToUpgrade);
+        
+        if (countWeaponsToUpgrade < currentWeaponsNum)
+        {
+            while (upgradableItems.Contains(weaponToUpgrade)) 
+            {
+                weaponToUpgrade = weaponsToUpgrade[UnityEngine.Random.Range(0, weaponsToUpgrade.Count)];
+            }
+
+            upgradableItems.Add(weaponToUpgrade);
+            countWeaponsToUpgrade++;
+        }
     }
     #endregion 
 

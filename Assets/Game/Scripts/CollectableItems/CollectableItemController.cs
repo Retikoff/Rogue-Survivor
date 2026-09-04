@@ -9,6 +9,11 @@ public class CollectableItemController : MonoBehaviour
 
     private void Start()
     {
+        InitializeData();
+    }
+
+    public void InitializeData()
+    {
         Data = Instantiate(data);
     }
 

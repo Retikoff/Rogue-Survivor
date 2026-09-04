@@ -18,9 +18,21 @@ MonoBehaviour:
   - Pairs:
     - Stat: 0
       Value: 2
-  - Pairs: []
-  - Pairs: []
-  - Pairs: []
-  - Pairs: []
-  - Pairs: []
-  - Pairs: []
+  - Pairs:
+    - Stat: 0
+      Value: 0
+  - Pairs:
+    - Stat: 0
+      Value: 0
+  - Pairs:
+    - Stat: 0
+      Value: 0
+  - Pairs:
+    - Stat: 0
+      Value: 0
+  - Pairs:
+    - Stat: 0
+      Value: 0
+  - Pairs:
+    - Stat: 0
+      Value: 0
